@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/blog/:path*",
-      "destination": "/api/blog/:path*"
+      "destination": "https://nomadicated.com/:path*"
     }
   ]
 }
