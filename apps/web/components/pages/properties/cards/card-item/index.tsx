@@ -15,6 +15,7 @@ import DisplayAmenityIcon from "@/components/commons/display-amenity-icon";
 import HeartComponent from "./heart";
 import TitleCard from "./title";
 import { MdLocationOn } from "react-icons/md";
+import Amenities from "./lib/amenities";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -126,15 +127,9 @@ const CardItem = ({ property }: { property: TProperty }) => {
             <span className="border flex items-center gap-3 p-2 px-4 rounded-lg bg-cyan-600 text-white h-2">
               <p>{sex_type(property.sex.toString())}</p>
             </span>
-          </div>
-
-          <div className="flex items-center justify-start gap-4 mt-2 ml-1 max-w-[85vw] overflow-x-auto overflow-hidden pb-2">
-            {property?.amenity?.facilities?.map((id: number, index: number) => (
-              <DisplayAmenityIcon key={index} amenity={id} />
-            ))}
           </div> */}
         </div>
-        <div className="flex h-16 ">
+        <div className="flex h-14">
           {sortedProducts.map((product, index) => (
             <div key={product.id} className="flex items-center">
               <div className="flex-1 flex flex-col items-start justify-between">
@@ -156,6 +151,8 @@ const CardItem = ({ property }: { property: TProperty }) => {
             </div>
           ))}
         </div>
+
+        <Amenities property={property} />
       </div>
     </button>
   );

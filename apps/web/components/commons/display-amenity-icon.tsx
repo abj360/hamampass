@@ -44,11 +44,13 @@ const DisplayAmenityIcon = ({
   }
 
   return (
-    <div className={`text-slate-500 ${isDesc && "flex gap-4"}`}>
+    <div className="text-slate-500 flex gap-2 items-center ">
       <p className={`${isDesc && "text-2xl"}`}>
-        {convertIcon(amenity, isDesc ? "text-3xl" : "text-lg")}
+        {convertIcon(amenity, isDesc ? "text-3xl" : "")}
       </p>
-      {isDesc && <p>{translateDesc(amenity.toString())}</p>}
+      <p className="text-sm whitespace-nowrap">
+        {translateDesc(amenity.toString())}
+      </p>
     </div>
   );
 };
