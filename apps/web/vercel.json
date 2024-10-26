@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/blog/:path*",
-      "destination": " https://www.tiarapetsit.site/:path*"
+      "destination": "https://nomadicated.com/:path*"
     }
   ]
 }
