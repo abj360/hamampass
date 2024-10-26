@@ -9,7 +9,6 @@ import { request } from "@hamampass/services";
 import moment from "moment";
 import "moment/locale/tr";
 import "moment/locale/en-gb";
-import Link from "next/link";
 
 const HamburgerContent = ({ setOpen, cartItemCount }: any) => {
   const { locale } = useParams();
@@ -114,7 +113,7 @@ const HamburgerContent = ({ setOpen, cartItemCount }: any) => {
         Help
       </button>
 
-      <Link href="/blog">Blog</Link>
+      <a href="/blog">Blog</a>
 
       <div className="flex items-center absolute bottom-0">
         <p>{t("language")} </p>
