@@ -41,7 +41,7 @@ const CardItem = ({ property }: { property: TProperty }) => {
   }, [property.products]);
 
   const chose = property.photos.length > 1 ? property.photos : photos;
-  const images = chose.slice(0, 4);
+  const images = chose.slice(0, 3);
 
   return (
     <button
@@ -83,7 +83,9 @@ const CardItem = ({ property }: { property: TProperty }) => {
             <div
               key={index}
               className={`w-2.5 h-2.5 rounded-full ${
-                index === activeSlide ? "bg-cyan-500" : "bg-gray-300/50"
+                index === activeSlide
+                  ? "bg-secondary-10 border-white"
+                  : "bg-white/90"
               }`}
             />
           ))}
