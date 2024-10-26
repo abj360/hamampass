@@ -27,7 +27,7 @@ const RangeSlider = ({ min, max, onRangeChange }: any) => {
       onValueChange={handleValueChange}
     >
       <Slider.Track className="relative h-[1px] w-full grow overflow-hidden  rounded-full bg-secondary">
-        <Slider.Range className="absolute h-full bg-cyan-500" />
+        <Slider.Range className="absolute h-full bg-secondary-10" />
       </Slider.Track>
       <Slider.Thumb className="block h-5 w-5 rounded-full border-2 border-gray-400 bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
       <Slider.Thumb className="block h-5 w-5 rounded-full border-2 border-gray-400 bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />

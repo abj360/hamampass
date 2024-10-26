@@ -45,7 +45,9 @@ const Header = ({ variant = "default" }: HeaderProps) => {
       ? "text-white"
       : "text-primary-10"
     : isWhite
-      ? "text-primary-10"
+      ? isOpen
+        ? "text-white"
+        : "text-primary-10"
       : "text-white";
 
   const logoSrc = isSticky
@@ -53,7 +55,9 @@ const Header = ({ variant = "default" }: HeaderProps) => {
       ? "/longLogo.png"
       : "/darkLongLogo.png"
     : isWhite
-      ? "/darkLongLogo.png"
+      ? isOpen
+        ? "/longLogo.png"
+        : "/darkLongLogo.png"
       : "/longLogo.png";
 
   const backgroundColor = isWhite ? "bg-white" : "";
@@ -79,7 +83,6 @@ const Header = ({ variant = "default" }: HeaderProps) => {
             <Hamburger
               toggled={isOpen}
               size={24}
-              color={isWhite ? "#2F90A1" : undefined} // Use primary-10 color for hamburger when variant is white
               aria-expanded={isOpen}
               aria-controls="drawer-content"
             />

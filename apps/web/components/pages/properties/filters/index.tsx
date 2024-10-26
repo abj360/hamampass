@@ -79,7 +79,7 @@ const FilterComponent: React.FC = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-white py-1">
+    <div className="sticky top-0 z-20 bg-white py-1">
       <div className="flex items-center border border-primary-10 rounded-lg mx-4 my-2 gap-1 relative">
         <IoSearchSharp size={22} className="mb-[.1rem] ml-2" />
         <Input

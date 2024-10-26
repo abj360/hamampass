@@ -73,7 +73,7 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
         </div>
         <DrawerFooter>
           <DrawerClose>
-            <p className="bg-cyan-500 mx-4 py-2 my-1 rounded-md text-white">
+            <p className="bg-primary-10 mx-4 py-2 my-1 rounded-md text-white">
               {properties && properties.all_items} {btn("show")}
             </p>
           </DrawerClose>
