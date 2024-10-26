@@ -59,8 +59,7 @@ const CheckboxComponent = ({ id, name, paramName, isIcon }: CheckboxProps) => {
     <Label className="flex items-center gap-2 justify-between ">
       {isIcon ? (
         <div className="flex gap-4 items-center">
-          <DisplayAmenityIcon amenity={id} />
-          <span className="text-gray-700 text-md">{name}</span>
+          <DisplayAmenityIcon isBig={true} amenity={id} />
         </div>
       ) : (
         <span>{name}</span>

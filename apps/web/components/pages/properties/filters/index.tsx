@@ -101,7 +101,7 @@ const FilterComponent: React.FC = () => {
         />
 
         {searchParams.size !== 0 && (
-          <div className="py-0.5 px-[.28rem] text-center min-w-3 text-xs/3 bg-cyan-500 rounded-full text-white absolute -right-1 -top-1">
+          <div className="py-0.5 px-[.28rem] text-center min-w-3 text-xs/3 bg-secondary-10 rounded-full text-white aspect-square border absolute -right-1 -top-1">
             {searchParams.size}
           </div>
         )}
