@@ -41,6 +41,7 @@ async function getAllProperties(req: NextRequest) {
         rating: true,
         products: true,
         amenity: true,
+        contact: true,
       },
     })) as unknown as TProperty[];
 

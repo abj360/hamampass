@@ -100,7 +100,9 @@ const CardItem = ({ property }: { property: TProperty }) => {
           <div className="flex flex-col items-start">
             <div className="flex  items-end mt-1">
               <MdLocationOn className="text-orange-600 w-5 h-5 -ml-1" />
-              <p className="text-sgray-100 text-xs">Besiktas / Istanbul</p>
+              <p className="text-sgray-100 text-xs">
+                {property.contact.district} / {property.contact.city}
+              </p>
             </div>
             <div className="w-full flex items-center justify-between">
               <TitleCard property={property} />
