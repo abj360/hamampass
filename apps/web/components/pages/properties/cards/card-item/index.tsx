@@ -11,7 +11,6 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@hamampass/ui/primitives/carousel.tsx";
-import DisplayAmenityIcon from "@/components/commons/display-amenity-icon";
 import HeartComponent from "./heart";
 import TitleCard from "./title";
 import { MdLocationOn } from "react-icons/md";
@@ -19,7 +18,7 @@ import Amenities from "./lib/amenities";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
-  const sex_type = useTranslations("home.filters.sex");
+
   const product_type = useTranslations("home.product-type");
 
   const [sortedProducts, setSortedProducts] = useState(property.products);
@@ -124,12 +123,6 @@ const CardItem = ({ property }: { property: TProperty }) => {
               )}
             </div>
           </div>
-
-          {/* <div className="flex gap-2 items-center justify-between">
-            <span className="border flex items-center gap-3 p-2 px-4 rounded-lg bg-cyan-600 text-white h-2">
-              <p>{sex_type(property.sex.toString())}</p>
-            </span>
-          </div> */}
         </div>
         <div className="flex h-14">
           {sortedProducts.map((product, index) => (

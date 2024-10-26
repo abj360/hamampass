@@ -20,8 +20,33 @@ import { TbMassage } from "react-icons/tb";
 import { MdOutlineSevereCold } from "react-icons/md";
 import { IoTicketOutline, IoBodyOutline } from "react-icons/io5";
 import { BiSolidCoffeeBean } from "react-icons/bi";
+import { IoIosMan, IoIosWoman } from "react-icons/io";
 
 const classN = "text-3xl";
+
+const convertGenderIcon = (id: number, className = classN) => {
+  switch (id.toString()) {
+    case "0":
+      return <IoIosWoman className={className} />;
+    case "1":
+      return <IoIosMan className={className} />;
+    case "2":
+      return (
+        <div className="flex">
+          <IoIosMan className={className} />
+          <IoIosWoman className={`${className} -ml-1`} />
+        </div>
+      );
+
+    default:
+      return (
+        <div className="flex">
+          <IoIosMan className={className} />
+          <IoIosWoman className={className} />
+        </div>
+      );
+  }
+};
 
 const convertAFacilityIcon = (id: number, className = classN) => {
   switch (id.toString()) {
@@ -90,4 +115,5 @@ export {
   convertAFacilityIcon,
   convertAItemIcon,
   convertAFood_DrinkIcon,
+  convertGenderIcon,
 };
