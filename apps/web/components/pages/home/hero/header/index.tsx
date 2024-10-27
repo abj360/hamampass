@@ -13,6 +13,7 @@ const HeroHeader = () => {
         objectFit="cover"
         objectPosition="center"
         className="absolute inset-0 w-screen h-svh object-cover -z-20"
+        priority={true}
       />
       <div className="absolute inset-0 w-screen h-svh bg-black/10 -z-10" />
     </div>
