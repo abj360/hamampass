@@ -21,10 +21,10 @@ const ReviewComponent = ({
     <section className="mb-5">
       <h2 className="font-bold text-xl text-gray-600">{s("review-title")}</h2>
 
-      <div className="my-3 flex items-center gap-2">
-        <IoStar className="text-cyan-500 text-2xl" />
-        <p className="text-3xl font-semibold">
-          {num}
+      <div className="my-3 flex items-center gap-2  ">
+        <IoStar className="text-primary-500" size={36} />
+        <p>
+          <span className="text-3xl font-semibold "> {num}</span>
 
           <span className="text-lg text-gray-700"> ({data?.count || 0})</span>
         </p>

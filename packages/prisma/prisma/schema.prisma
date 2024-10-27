@@ -32,8 +32,7 @@ datasource db {
 
 // enum Payment_Method {
 // Cash_Only === 0
-// Cash_and_Credit_Cards  === 1
-// Credit_Card_Only === 2
+// Accept_Credit_Cards  === 1
 // }
 
 // enum Role{

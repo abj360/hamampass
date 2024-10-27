@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Slider from "./image-slider";
-import { CiLocationOn } from "react-icons/ci";
+import { MdLocationOn } from "react-icons/md";
 import { TProperty } from "@hamampass/db/types";
 import { useTranslations } from "@hamampass/i18n";
 import DetailsComponent from "./details";
@@ -14,6 +14,8 @@ import GoogleMapComponent from "@/components/pages/single-property/details/locat
 import BookButton from "@/components/pages/single-property/book-btn";
 import HeaderGeneral from "@/components/commons/header";
 import Header from "@/components/commons/new-header";
+import Gender from "../properties/cards/card-item/lib/amenities/gender";
+import Price from "./lib/price";
 
 const SinglePropertyPage = ({
   data,
@@ -57,11 +59,8 @@ const SinglePropertyPage = ({
             <DrawerGeneral
               trigger={
                 <div className="text-sm flex items-center gap-1">
-                  <div className="flex gap-1 ">
-                    <CiLocationOn
-                      className="text-orange-600 mt-[.1rem]"
-                      size={16}
-                    />
+                  <div className="flex">
+                    <MdLocationOn className="text-orange-600" size={18} />
                     {data?.contact.district} / {data?.contact.city}
                   </div>
                   <GoDotFill className="text-gray-500" size={10} />
@@ -99,17 +98,9 @@ const SinglePropertyPage = ({
             {data?.title}
           </h1>
           {data && (
-            <div className="flex gap-2 text-xs">
-              <div className="border flex items-center gap-3 p-2 pr-4 rounded-2xl bg-orange-500 text-white h-3">
-                <FaTurkishLiraSign
-                  size={30}
-                  className="bg-white text-orange-500 rounded-full p-1"
-                />
-                <p>{payment_details(data?.pay.toString())}</p>
-              </div>
-              <div className="border flex items-center gap-3 p-2 px-4 rounded-2xl bg-teal-500 text-white h-3">
-                <p>{sex(data.sex.toString())}</p>
-              </div>
+            <div className="flex items-center justify-between w-2/3  text-xs">
+              <Gender property={data} />
+              <Price id={data?.pay} />
             </div>
           )}
         </div>

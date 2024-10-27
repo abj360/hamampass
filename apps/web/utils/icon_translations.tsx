@@ -21,8 +21,22 @@ import { MdOutlineSevereCold } from "react-icons/md";
 import { IoTicketOutline, IoBodyOutline } from "react-icons/io5";
 import { BiSolidCoffeeBean } from "react-icons/bi";
 import { IoIosMan, IoIosWoman } from "react-icons/io";
+import { FaRegCreditCard } from "react-icons/fa";
+import { GiMoneyStack } from "react-icons/gi";
 
 const classN = "text-3xl";
+
+const convertPaymentIcon = (id: number, className = classN) => {
+  switch (id.toString()) {
+    case "0":
+      return <GiMoneyStack className={className} />;
+    case "1":
+      return <FaRegCreditCard className={className} />;
+
+    default:
+      return null;
+  }
+};
 
 const convertGenderIcon = (id: number, className = classN) => {
   switch (id.toString()) {
@@ -116,4 +130,5 @@ export {
   convertAItemIcon,
   convertAFood_DrinkIcon,
   convertGenderIcon,
+  convertPaymentIcon,
 };
