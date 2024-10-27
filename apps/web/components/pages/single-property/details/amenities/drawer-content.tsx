@@ -11,7 +11,7 @@ const AmenitiesDrawerContent = ({ data }: { data: TAmenity }) => {
             <DisplayAmenityIcon
               key={index}
               amenity={id}
-              isDesc={true}
+              isBig={true}
               type="facilities"
             />
           ))}
@@ -23,7 +23,7 @@ const AmenitiesDrawerContent = ({ data }: { data: TAmenity }) => {
             <DisplayAmenityIcon
               key={index}
               amenity={id}
-              isDesc={true}
+              isBig={true}
               type="items"
             />
           ))}
@@ -35,7 +35,7 @@ const AmenitiesDrawerContent = ({ data }: { data: TAmenity }) => {
             <DisplayAmenityIcon
               key={index}
               amenity={id}
-              isDesc={true}
+              isBig={true}
               type="foods_drinks"
             />
           ))}

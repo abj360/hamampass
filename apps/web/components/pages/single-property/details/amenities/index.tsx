@@ -22,7 +22,7 @@ const AmenityComponent = ({ data }: { data: TAmenity }) => {
       <div className="flex flex-col gap-4 mt-2 ml-1">
         {data &&
           firstThree.map((id: any, index: number) => (
-            <DisplayAmenityIcon key={index} amenity={id} isDesc={true} />
+            <DisplayAmenityIcon key={index} amenity={id} isBig={true} />
           ))}
       </div>
       <DrawerGeneral
