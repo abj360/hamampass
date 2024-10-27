@@ -59,7 +59,7 @@ const HamburgerContent = ({ setOpen, cartItemCount }: any) => {
   }, [data?.user?.id]);
 
   return (
-    <div className="flex flex-col items-start gap-6">
+    <div className="flex flex-col items-start gap-6 font-bold text-sgray-10">
       <button
         className="text-2xl scale-x-115  w-full text-left py-2"
         onClick={() => router.push(`/${locale}/wishlist`)}
@@ -113,10 +113,8 @@ const HamburgerContent = ({ setOpen, cartItemCount }: any) => {
         Help
       </button>
 
-      <a href="/blog">Blog</a>
-
-      <div className="flex items-center absolute bottom-0">
-        <p>{t("language")} </p>
+      <div className="flex items-center gap-2 absolute bottom-0 mb-2">
+        <p className="w-52 text-lg">{t("language")} </p>
         <LocaleSwitcher />
       </div>
     </div>
