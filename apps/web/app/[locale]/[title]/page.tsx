@@ -18,11 +18,10 @@ const SingleProperty = async ({ params }: any) => {
 
   return (
     <main>
-      <HeaderGeneral
-        isHome={false}
-        title={decodeURI(title.replace(/-/g, " "))}
+      <SinglePropertyPage
+        data={res}
+        decode_title={decodeURI(title.replace(/-/g, " "))}
       />
-      <SinglePropertyPage data={res} />
     </main>
   );
 };

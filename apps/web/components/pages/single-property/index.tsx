@@ -12,8 +12,16 @@ import { GoDotFill } from "react-icons/go";
 import DrawerGeneral from "@/components/commons/drawer";
 import GoogleMapComponent from "@/components/pages/single-property/details/location/map";
 import BookButton from "@/components/pages/single-property/book-btn";
+import HeaderGeneral from "@/components/commons/header";
+import Header from "@/components/commons/new-header";
 
-const SinglePropertyPage = ({ data }: { data: TProperty }) => {
+const SinglePropertyPage = ({
+  data,
+  decode_title,
+}: {
+  data: TProperty;
+  decode_title: string;
+}) => {
   const reviewRef = useRef<HTMLDivElement>(null);
   const productsRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +45,8 @@ const SinglePropertyPage = ({ data }: { data: TProperty }) => {
   };
 
   return (
-    <div className="overflow-hidden mb-16">
+    <div className="mb-6">
+      <Header variant="white" title={decode_title} />
       <Slider data={data} />
 
       {/* {data && <BookButton property={data} />} */}
@@ -71,17 +80,22 @@ const SinglePropertyPage = ({ data }: { data: TProperty }) => {
 
             {/* review star  */}
             {data?.rating && (
-              <div className="flex items-center gap-1" onClick={scrollToReview}>
-                <IoStar className="text-cyan-500 w-5 h-5" />
-                <span className="font-bold text-xl">
+              <div
+                className="flex items-center gap-1 "
+                onClick={scrollToReview}
+              >
+                <IoStar className="text-primary-500 w-6 h-6" />
+                <span className="font-semibold text-xl -mb-1">
                   {(data &&
-                    parseFloat(data?.rating?.rate_overall?.toFixed(1))) ||
+                    parseFloat(data?.rating?.rate_overall?.toFixed(1)).toFixed(
+                      1
+                    )) ||
                     ""}
                 </span>
               </div>
             )}
           </div>
-          <h1 className="font-bold text-2xl text-slate-700 mb-2">
+          <h1 className="font-semibold text-2xl text-slate-700 mb-2">
             {data?.title}
           </h1>
           {data && (

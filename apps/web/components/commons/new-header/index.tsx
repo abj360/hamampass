@@ -5,15 +5,25 @@ import { Turn as Hamburger } from "hamburger-react";
 import { useState, useEffect } from "react";
 import HamburgerDrawerComponent from "./drawer";
 import { useRouter } from "next/navigation";
+import { IoChevronBack } from "react-icons/io5";
 
 interface HeaderProps {
   variant?: "default" | "sticky" | "white";
+  title?: string;
 }
 
-const Header = ({ variant = "default" }: HeaderProps) => {
+const Header = ({ variant = "default", title }: HeaderProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
+
+  const handleLogo = () => {
+    !title ? router.push(`/`) : window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleBack = () => {
+    router.back();
+  };
 
   useEffect(() => {
     const handleCartUpdated = () => {
@@ -64,15 +74,18 @@ const Header = ({ variant = "default" }: HeaderProps) => {
 
   return (
     <header
-      className={`flex justify-between items-center ${textColor} ${backgroundColor}`}
+      className={`flex justify-between items-center ${title && "border-b border-sgray-100 sticky top-0 z-30"} ${textColor} ${backgroundColor}   `}
     >
-      <Image
-        src={logoSrc}
-        width={200}
-        height={200}
-        alt="logo"
-        className="z-40"
-      />
+      {title && (
+        <IoChevronBack size={24} className="ml-2" onClick={handleBack} />
+      )}
+      <button onClick={handleLogo} className="z-40 w-full">
+        {title ? (
+          <p className="text-xl w-full">{title}</p>
+        ) : (
+          <Image src={logoSrc} width={200} height={200} alt="logo" />
+        )}
+      </button>
 
       <HamburgerDrawerComponent
         setIsOpen={setIsOpen}
