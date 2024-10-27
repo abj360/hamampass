@@ -211,7 +211,7 @@ const DrawerComponent = ({ trigger, property, data }: DrawerComponentProps) => {
           </div>
 
           <Button
-            className={`rounded-xl px-8 bg-cyan-500 ${
+            className={`rounded-xl px-8 bg-primary-500 ${
               count === 0 ? "opacity-50 cursor-not-allowed" : ""
             }`}
             onClick={handleAddToCard}

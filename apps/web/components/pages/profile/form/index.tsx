@@ -94,109 +94,111 @@ const FormComponent = () => {
   }
 
   return (
-    <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-3 mx-6 mt-4"
-      >
-        <FormField
-          control={form.control}
-          name="nationality"
-          render={({ field }) => (
-            <FormItem className="flex">
-              <FormLabel className="mr-2 mt-5">{t("nationality")}</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value}
-                  onValueChange={(value) => field.onChange(value)}
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-
-                  <SelectContent>
-                    {countries?.map((country) => (
-                      <SelectItem key={country.tld} value={country.tld}>
-                        <div className="flex items-center">
-                          <Image
-                            src={country.image}
-                            alt={country[`name_${locale}`]}
-                            width={20}
-                            height={20}
-                            className="mr-2 aspect-video"
-                          />
-
-                          <span>{country[`name_${locale}`]}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="age_range"
-          render={({ field }) => (
-            <FormItem className="flex">
-              <FormLabel className="mr-2 mt-5">{t("age")}</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value.toString()} // Convert number to string
-                  onValueChange={(value) => field.onChange(Number(value))} // Convert string to number
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="0">0 - 17</SelectItem>
-                    <SelectItem value="1">18 - 24</SelectItem>
-                    <SelectItem value="2">25 - 30</SelectItem>
-                    <SelectItem value="3">31 - 40</SelectItem>
-                    <SelectItem value="4">41+</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="gender"
-          render={({ field }) => (
-            <FormItem className="flex ">
-              <FormLabel className="mr-2 mt-5">{t("gender")}</FormLabel>
-              <FormControl>
-                <Select
-                  value={field.value.toString()}
-                  onValueChange={(value) => field.onChange(Number(value))}
-                >
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="0">Female</SelectItem>
-                    <SelectItem value="1">Male</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <Button
-          type="submit"
-          className="bg-gray-400 px-2 py-1 mt-5  text-white rounded  "
+    <div className="flex items-center justify-center h-full ">
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-6 mx-6 mt-4 w-full "
         >
-          {p("title")}
-        </Button>
-      </form>
-    </Form>
+          <FormField
+            control={form.control}
+            name="nationality"
+            render={({ field }) => (
+              <FormItem className="flex items-center justify-between">
+                <FormLabel className="mr-2 mt-5">{t("nationality")}</FormLabel>
+                <FormControl>
+                  <Select
+                    value={field.value}
+                    onValueChange={(value) => field.onChange(value)}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+
+                    <SelectContent>
+                      {countries?.map((country) => (
+                        <SelectItem key={country.tld} value={country.tld}>
+                          <div className="flex items-center">
+                            <Image
+                              src={country.image}
+                              alt={country[`name_${locale}`]}
+                              width={20}
+                              height={20}
+                              className="mr-2 aspect-video"
+                            />
+
+                            <span>{country[`name_${locale}`]}</span>
+                          </div>
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="age_range"
+            render={({ field }) => (
+              <FormItem className="flex items-center justify-between">
+                <FormLabel className="mr-2 mt-5">{t("age")}</FormLabel>
+                <FormControl>
+                  <Select
+                    value={field.value.toString()} // Convert number to string
+                    onValueChange={(value) => field.onChange(Number(value))} // Convert string to number
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">0 - 17</SelectItem>
+                      <SelectItem value="1">18 - 24</SelectItem>
+                      <SelectItem value="2">25 - 30</SelectItem>
+                      <SelectItem value="3">31 - 40</SelectItem>
+                      <SelectItem value="4">41+</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="gender"
+            render={({ field }) => (
+              <FormItem className="flex items-center justify-between">
+                <FormLabel className="mr-2 mt-5">{t("gender")}</FormLabel>
+                <FormControl>
+                  <Select
+                    value={field.value.toString()}
+                    onValueChange={(value) => field.onChange(Number(value))}
+                  >
+                    <SelectTrigger className="w-[180px]">
+                      <SelectValue placeholder="Select" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="0">Female</SelectItem>
+                      <SelectItem value="1">Male</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            type="submit"
+            className="bg-primary-600 px-2 py-1 mt-10  text-white rounded  "
+          >
+            {p("title")}
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 };
 

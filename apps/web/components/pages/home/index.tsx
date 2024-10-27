@@ -1,33 +1,37 @@
-import { DatePickerForm } from "@/components/pages/home/date-picker";
+"use client";
+
+import { useState, useEffect } from "react";
+import BannerSection from "./banner";
+import HeroSection from "./hero";
+import CardSection from "./card";
+import StickyHeader from "./sticky-header";
 
 const HomePage = ({ locale }: { locale: string }) => {
+  const [isStickyVisible, setIsStickyVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const dateFormElement = document.querySelector("#dateForm");
+      if (dateFormElement) {
+        const rect = dateFormElement.getBoundingClientRect();
+        const isOutOfView = rect.bottom < 0;
+
+        setIsStickyVisible(isOutOfView);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="flex-1 flex flex-col items-center justify-end mb-8 gap-8 mx-5">
-      <div className=" w-full  ">
-        {locale === "en" ? (
-          <div className="  text-white flex flex-col gap-4">
-            <div className="flex flex-col text-5xl font-semibold gap-2 ">
-              <h1>Take a</h1>
-              <h1>hamampass</h1>
-            </div>
-            <p>
-              Experience İstanbul&apos;s best hamams
-              <br /> no credit card required.
-            </p>
-          </div>
-        ) : (
-          <div className="text-white flex flex-col gap-4">
-            <div className="flex flex-col text-5xl font-semibold gap-2">
-              <h1>hamampass</h1>
-            </div>
-            <p>
-              kredi kartı gerekmeden
-              <br /> İstanbul&apos;un en iyi hamamlarını deneyimleyin
-            </p>
-          </div>
-        )}
-      </div>
-      <DatePickerForm />
+    <div className="flex flex-col min-h-svh">
+      <HeroSection locale={locale} />
+      {isStickyVisible && <StickyHeader />}
+      <BannerSection>
+        <CardSection />
+      </BannerSection>
     </div>
   );
 };

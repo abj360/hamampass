@@ -16,7 +16,7 @@ import { set } from "ramda";
 const chartConfig = {
   property: {
     label: "property",
-    color: "#06B6D4",
+    color: "#8f7191",
   },
 } satisfies ChartConfig;
 

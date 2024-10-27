@@ -10,11 +10,11 @@ import {
 
 const DisplayAmenityIcon = ({
   amenity,
-  isDesc = false,
+  isBig = false,
   type = "facilities",
 }: {
   amenity: number;
-  isDesc?: boolean;
+  isBig?: boolean;
   type?: "facilities" | "items" | "foods_drinks";
 }) => {
   const facilities = useTranslations("home.filters.amenities.facilities");
@@ -44,11 +44,11 @@ const DisplayAmenityIcon = ({
   }
 
   return (
-    <div className={`text-slate-500 ${isDesc && "flex gap-4"}`}>
-      <p className={`${isDesc && "text-2xl"}`}>
-        {convertIcon(amenity, isDesc ? "text-3xl" : "text-lg")}
+    <div className="text-slate-500 flex gap-2 items-center ">
+      <p>{convertIcon(amenity, isBig ? "text-xl" : "")}</p>
+      <p className="text-sm whitespace-nowrap">
+        {translateDesc(amenity.toString())}
       </p>
-      {isDesc && <p>{translateDesc(amenity.toString())}</p>}
     </div>
   );
 };

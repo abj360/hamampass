@@ -11,13 +11,14 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@hamampass/ui/primitives/carousel.tsx";
-import DisplayAmenityIcon from "@/components/commons/display-amenity-icon";
 import HeartComponent from "./heart";
 import TitleCard from "./title";
+import { MdLocationOn } from "react-icons/md";
+import Amenities from "./lib/amenities";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
-  const sex_type = useTranslations("home.filters.sex");
+
   const product_type = useTranslations("home.product-type");
 
   const [sortedProducts, setSortedProducts] = useState(property.products);
@@ -41,12 +42,13 @@ const CardItem = ({ property }: { property: TProperty }) => {
   }, [property.products]);
 
   const chose = property.photos.length > 1 ? property.photos : photos;
-  const images = chose.slice(0, 4);
+  const images = chose.slice(0, 3);
 
   return (
     <button
       onClick={handleCardClick}
       aria-label={`View details of ${property.title}`}
+      className="border rounded-lg shadow-sm"
     >
       <Carousel
         setApi={(api) =>
@@ -69,7 +71,7 @@ const CardItem = ({ property }: { property: TProperty }) => {
                 alt={property.title || "property"}
                 height={900}
                 width={1600}
-                className="rounded-lg"
+                className="rounded-t-lg"
                 loading={index === 0 ? "eager" : "lazy"}
                 sizes="(max-width: 800px) 100vw, 800px"
               />
@@ -83,41 +85,46 @@ const CardItem = ({ property }: { property: TProperty }) => {
             <div
               key={index}
               className={`w-2.5 h-2.5 rounded-full ${
-                index === activeSlide ? "bg-cyan-500" : "bg-gray-300/50"
+                index === activeSlide
+                  ? "bg-secondary-10 border border-white"
+                  : "bg-white"
               }`}
             />
           ))}
         </div>
       </Carousel>
 
-      <div>
+      <div className="mx-2">
         <div>
-          <div className="flex items-center justify-between">
-            <TitleCard property={property} />
-            {property.rating && (
-              <div className="flex items-start gap-1 mr-2">
-                <IoStar className="text-cyan-500 w-5 h-5" />
-                <p className="font-semibold">
-                  {parseFloat(property?.rating?.rate_overall?.toFixed(1)) || ""}{" "}
-                  ({property?.rating?.count || 0})
-                </p>
-              </div>
-            )}
-          </div>
-
-          <div className="flex gap-2 items-center justify-between">
-            <span className="border flex items-center gap-3 p-2 px-4 rounded-lg bg-cyan-600 text-white h-2">
-              <p>{sex_type(property.sex.toString())}</p>
-            </span>
-          </div>
-
-          <div className="flex items-center justify-start gap-4 mt-2 ml-1 max-w-[85vw] overflow-x-auto overflow-hidden pb-2">
-            {property?.amenity?.facilities?.map((id: number, index: number) => (
-              <DisplayAmenityIcon key={index} amenity={id} />
-            ))}
+          <div className="flex flex-col items-start">
+            <div className="flex  items-end mt-1">
+              <MdLocationOn className="text-orange-600 w-5 h-5 -ml-1" />
+              <p className="text-sgray-100 text-xs">
+                {property.contact.district} / {property.contact.city}
+              </p>
+            </div>
+            <div className="w-full flex items-center justify-between">
+              <TitleCard property={property} />
+              {property.rating && (
+                <div className="flex items-end justify-center gap-1 mr-2">
+                  <IoStar className="text-primary-500 w-6 h-6" />
+                  <p className="flex items-end gap-1">
+                    <span className="font-semibold text-xl -mb-1">
+                      {parseFloat(
+                        property?.rating?.rate_overall?.toFixed(1)
+                      ).toFixed(1) || ""}
+                    </span>
+                    <span className="text-sgray-100 text-xs font-normal">
+                      {" "}
+                      ({property?.rating?.count || 0})
+                    </span>
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        <div className="flex h-16 mt-4">
+        <div className="flex h-14">
           {sortedProducts.map((product, index) => (
             <div key={product.id} className="flex items-center">
               <div className="flex-1 flex flex-col items-start justify-between">
@@ -139,6 +146,8 @@ const CardItem = ({ property }: { property: TProperty }) => {
             </div>
           ))}
         </div>
+
+        <Amenities property={property} />
       </div>
     </button>
   );

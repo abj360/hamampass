@@ -30,7 +30,7 @@ const Cards = ({ propertyId }: { propertyId: string }) => {
     fetchReviews();
   }, [propertyId]);
   return (
-    <div className=" bg-cyan-300 rotate-3 my-10  px-2 rounded w-[105vw] -ml-4 relative">
+    <div className=" bg-primary-400 rotate-3 my-10  px-2 rounded w-[105vw] -ml-4 relative">
       <Carousel className="rounded-none py-5  -rotate-3  ">
         <CarouselContent className=" rotate-3  pl-6 gap-5  py-1">
           {reviews
@@ -44,10 +44,10 @@ const Cards = ({ propertyId }: { propertyId: string }) => {
       <DrawerGeneral
         trigger={
           <div className="flex items-center gap-2 justify-end -rotate-3">
-            <span className="text-xs font-semibold text-black">
+            <span className="text-xs font-semibold text-primary-950">
               {btn("see-all")}
             </span>
-            <FaGreaterThan size={10} />
+            <FaGreaterThan size={10} className="text-primary-950" />
           </div>
         }
         content={

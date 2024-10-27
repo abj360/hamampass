@@ -14,7 +14,7 @@ const DetailsComponent = forwardRef<HTMLDivElement, { data: TProperty }>(
     const { locale } = useParams();
 
     return (
-      <div>
+      <div className="overflow-hidden">
         <div className="mx-2">
           <AboutComponent desc={data[`desc_${locale}`]} />
           <div>

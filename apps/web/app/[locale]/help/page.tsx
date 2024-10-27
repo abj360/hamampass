@@ -1,10 +1,10 @@
-import HeaderGeneral from "@/components/commons/header";
 import HelpPage from "@/components/pages/help";
+import Header from "@/components/commons/new-header";
 
 const Help = () => {
   return (
-    <main>
-      <HeaderGeneral />
+    <main className="min-h-screen">
+      <Header variant="white" title="Help" />
       <HelpPage />
     </main>
   );

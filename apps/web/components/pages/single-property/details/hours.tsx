@@ -40,7 +40,7 @@ const HoursComponent: React.FC<HoursComponentProps> = ({ data }) => {
   }, [isWeekDay]);
 
   return (
-    <section className="my-2 mt-6 mb-4 ">
+    <section className="my-4 ">
       <hr />
       <h2 className="font-bold text-xl mb-3 mt-4 text-gray-600">
         {title("hours-title")}

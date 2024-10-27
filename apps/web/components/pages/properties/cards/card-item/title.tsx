@@ -31,7 +31,9 @@ const TitleCard = ({ property }: { property: TProperty }) => {
   };
 
   return (
-    <h2 className="text-xl font-bold text-slate-700 my-2">
+    <h2
+      className={`${!extention() && "text-xl"} font-semibold text-slate-700 `}
+    >
       {property.title} {extention()}
     </h2>
   );

@@ -15,8 +15,8 @@ const SignIn = () => {
     return <div>Already signed in</div>;
   }
   return (
-    <div className=" ">
-      <h1 className="text-xl font-semibold text-slate-700 mt-8 mb-2 text-center bg-slate-400/80">
+    <div className="min-h-screen flex flex-col gap-12">
+      <h1 className="text-xl font-semibold text-primary-10  py-2 text-center  border-b border-sgray-100">
         {t("title")}
       </h1>
 

@@ -55,8 +55,8 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
   const c = useTranslations("home.load-btn");
 
   return (
-    <div className="flex flex-col items-center mx-4 gap-6">
-      <div aria-live="polite">
+    <div className="flex flex-col items-center mx-4 mb-10 gap-6">
+      <div aria-live="polite" className="flex flex-col gap-6">
         {properties.map((property: TProperty) => (
           <CardItem key={property.id} property={property} />
         ))}
@@ -64,7 +64,7 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
 
       {page.max_page > page.page && (
         <Button
-          className="bg-cyan-500 w-4/5 mt-2 mb-4"
+          className="bg-primary-10 w-4/5 mt-2 mb-4"
           onClick={handleLoadMore}
         >
           {c("button")}

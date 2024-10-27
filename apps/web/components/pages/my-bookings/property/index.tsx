@@ -25,18 +25,19 @@ const PropertyPartTrigger = ({ booking }: { booking: TBooking }) => {
         className="aspect-square rounded-xl object-cover object-center"
       />
       <div className="text-gray-700 flex flex-col items-start gap-[0.15rem]">
-        <h1 className="font-semibold text-lg  ">{booking.property.title}</h1>
-        <div className="flex items-center gap-1  ">
-          <IoLocation className="text-gray-500" />
-          <p className="text-sm">
-            {booking.property.contact.district} {" - "}
-            {booking.property.contact.city}
+        <div className="flex items-center gap-1">
+          <p className="text-xs">
+            {moment(booking.date).format("D MMM, YYYY")}
           </p>
         </div>
-        <div className="flex items-center gap-1">
-          <CiCalendar className="text-gray-500" />
+        <h1 className="font-semibold text-lg  text-primary-10">
+          {booking.property.title}
+        </h1>
+        <div className="flex items-center gap-1  ">
+          <IoLocation className="text-orange-700" />
           <p className="text-sm">
-            {moment(booking.date).format("D MMM, YYYY")}
+            {booking.property.contact.district} {" / "}
+            {booking.property.contact.city}
           </p>
         </div>
       </div>

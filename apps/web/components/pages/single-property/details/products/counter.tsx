@@ -18,7 +18,7 @@ const CounterComponent = ({ count, setCount }: any) => {
         readOnly
       />
       <button
-        className="py-1 px-3 mr-1 aspect-square bg-cyan-500 text-white text-lg font-semibold  focus:outline-none rounded-full"
+        className="py-1 px-3 mr-1 aspect-square bg-primary-500  text-white text-lg font-semibold  focus:outline-none rounded-full"
         onClick={increment}
       >
         +

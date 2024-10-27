@@ -46,8 +46,8 @@ const CarouselCardItem = ({ review }: { review: TReview }) => {
         <div className="w-full flex items-center justify-between">
           <p className="text-xs text-gray-400"> {formatedDate}</p>
           <div className="flex items-center gap-1">
-            <IoStar className="w-4 h-4 text-cyan-500" />
-            <p> {review.rate}</p>
+            <IoStar className="text-primary-500" size={24} />
+            <p> {review.rate.toFixed(1)}</p>
           </div>
         </div>
         <div className="flex items-center gap-2 w-full">
