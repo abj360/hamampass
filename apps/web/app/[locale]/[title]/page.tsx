@@ -2,7 +2,6 @@ import SinglePropertyPage from "@/components/pages/single-property";
 import { getPropertyByTitle } from "@/actions/property";
 import { NextRequest } from "next/server";
 import { TProperty } from "@hamampass/db/types";
-import HeaderGeneral from "@/components/commons/header";
 
 const SingleProperty = async ({ params }: any) => {
   const { title } = params;

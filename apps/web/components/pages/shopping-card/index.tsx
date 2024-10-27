@@ -110,7 +110,7 @@ const ShoppingCardPage = () => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="pt-4 h-full flex flex-col  ">
       <div className="mx-4">
         <Button
           variant="none"
@@ -125,7 +125,9 @@ const ShoppingCardPage = () => {
         </Button>
         <div className="flex items-center justify-between ">
           <div>
-            <h1 className="text-sm font-medium">{property.title}</h1>
+            <h1 className="text-sm text-primary-10 font-semibold">
+              {property.title}
+            </h1>
             <p className="text-sm text-gray-500">{formattedDate}</p>
           </div>
           <Image
@@ -146,7 +148,9 @@ const ShoppingCardPage = () => {
                 <Separator />
                 <div className="my-2 flex items-center justify-between">
                   <div>
-                    <p className="font-medium ">{t(key.toString())}</p>
+                    <p className="font-medium  text-primary-10">
+                      {t(key.toString())}
+                    </p>
                     <div className="text-gray-500 text-sm">
                       ₺{product.price} x {product.count}
                     </div>
@@ -171,17 +175,17 @@ const ShoppingCardPage = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-0 w-full px-4 pb-4 bg-white  border-t  shadow-2xl z-20 flex flex-col items-center">
-        <div className="flex items-center justify-between w-full my-3">
-          <p className="font-semibold">{shop("total")}</p>
-          <p className="font-bold text-lg">
+      <div className=" mt-auto w-full px-4 pb-4 border-t border-sgray-100 flex flex-col items-center">
+        <div className="flex items-center justify-between w-full my-3 text-primary-10">
+          <p className="font-semibold text-2xl">{shop("total")}</p>
+          <p className="font-bold text-xl">
             ₺{totalMoney}
             <span className="text-sm ml-1 font-normal">TL</span>
           </p>
         </div>
 
         <Button
-          className="rounded-xl px-8 bg-cyan-500 w-full"
+          className="rounded-xl px-8 bg-primary-10 w-full"
           onClick={handleCheckOut}
           disabled={isPending}
         >

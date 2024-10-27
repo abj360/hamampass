@@ -7,12 +7,9 @@ import { TProperty } from "@hamampass/db/types";
 import { useTranslations } from "@hamampass/i18n";
 import DetailsComponent from "./details";
 import { IoStar } from "react-icons/io5";
-import { FaTurkishLiraSign } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import DrawerGeneral from "@/components/commons/drawer";
 import GoogleMapComponent from "@/components/pages/single-property/details/location/map";
-import BookButton from "@/components/pages/single-property/book-btn";
-import HeaderGeneral from "@/components/commons/header";
 import Header from "@/components/commons/new-header";
 import Gender from "../properties/cards/card-item/lib/amenities/gender";
 import Price from "./lib/price";
@@ -25,12 +22,9 @@ const SinglePropertyPage = ({
   decode_title: string;
 }) => {
   const reviewRef = useRef<HTMLDivElement>(null);
-  const productsRef = useRef<HTMLDivElement>(null);
 
-  const sex = useTranslations("home.filters.sex");
   const title = useTranslations("titles");
   const view = useTranslations("single");
-  const payment_details = useTranslations("home.filters.payment_methods");
 
   const scrollToReview = () => {
     if (reviewRef.current) {

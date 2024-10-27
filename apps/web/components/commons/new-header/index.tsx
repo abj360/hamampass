@@ -100,7 +100,7 @@ const Header = ({ variant = "default", title }: HeaderProps) => {
               aria-controls="drawer-content"
             />
             {cartItemCount > 0 && (
-              <span className="absolute top-2 right-1 text-xs bg-cyan-900 text-center border text-white aspect-square rounded-full px-1">
+              <span className="absolute top-2 right-1 text-xs bg-secondary-700 text-center border text-white aspect-square rounded-full px-1">
                 {cartItemCount}
               </span>
             )}
