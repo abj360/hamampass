@@ -8,7 +8,7 @@ description: This documentation will help you get familiar with the resources of
 | Key           |       Type       |                                               Description |
 | :------------ | :--------------: | --------------------------------------------------------: |
 | id            |      Strig       |                                                        id |
-| type          |       Int        |                                     0: basic , 1: regular |
+| type          |       Int        |                             [Type options](#type-options) |
 | adult_price   |      Float       |                                          price for adults |
 | child_price   |      Float?      |                                          price for childs |
 | age           |       Int?       |                                         max age for child |
@@ -20,3 +20,10 @@ description: This documentation will help you get familiar with the resources of
 | createdAt     |      String      |                                             creation time |
 | updatedAt     |      String      |                                               update time |
 | belongsToId   |      String      |                id of the property that product belongs to |
+
+### <a id="type-schema"></a>type options
+
+| Type |     Description |
+| :--: | --------------: |
+|  0   |   basic package |
+|  1   | regular package |

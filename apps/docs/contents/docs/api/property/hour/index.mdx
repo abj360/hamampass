@@ -8,12 +8,21 @@ description: This documentation will help you get familiar with the resources of
 | Key                |     Type     |                           Description |
 | :----------------- | :----------: | ------------------------------------: |
 | id                 |    String    |                                    id |
-| weekdays           |  String [ ]  |         [ "start time" , "end time" ] |
-| weekends           |  String [ ]  |         [ "start time" , "end time" ] |
+| weekdays           |  String [ ]  |     [Time array schema](#day-options) |
+| weekends           |  String [ ]  |     [Time array schema](#day-options) |
 | segregated_details |    Json?     | look up for segregated_details schema |
 | createdAt          |    String    |                         creation time |
 | updatedAt          |    String    |                           update time |
 | Property           | Property [ ] |                        property array |
+
+### <a id="day-schema"></a>Time Array Schema
+
+[ "09:00" , "21:00" ]
+
+| index |  Type  | Description |
+| :---- | :----: | ----------: |
+| 0     | String |  Start time |
+| 1     | String |    end time |
 
 ### Segeregated Details schema
 

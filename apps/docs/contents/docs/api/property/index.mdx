@@ -5,29 +5,44 @@ description: This documentation will help you get familiar with the resources of
 
 ## Property Schema
 
-| Key          |    Type     |                   Description |
-| :----------- | :---------: | ----------------------------: |
-| id           |    Strig    |                            id |
-| title        |   String    |             Name of the Hamam |
-| sex          |     Int     | 0: women , 1: men , 2: unisex |
-| outsider_sex |  Json [ ]   |                    look below |
-| photos       | String [ ]  |               photo url array |
-| pay          |     Int     |             0: cash , 1: card |
-| desc_tr      |   String    |           Turkish description |
-| desc_en      |   String    |           English description |
-| contactId    |   String    |            the id for contact |
-| hourId       |   String    |               the id for hour |
-| ratingId     |   String    |             the id for rating |
-| adminId      |   String    |              the id for admin |
-| amenityId    |   String    |          the id for amenityId |
-| createdAt    |   String    |                 creation time |
-| updatedAt    |   String    |                   update time |
-| products     | Product [ ] |                 product array |
-| bookings     | Booking [ ] |                 booking array |
+| Key          |    Type     |                                 Description |
+| :----------- | :---------: | ------------------------------------------: |
+| id           |   String    |                                          id |
+| title        |   String    |                           Name of the Hamam |
+| sex          |     Int     |                 [Sex Options](#sex-options) |
+| outsider_sex |  Json [ ]   | [Outsider Sex Schema](#outsider-sex-schema) |
+| photos       | String [ ]  |                   photo url array as string |
+| pay          |     Int     |                 [Pay Options](#pay-options) |
+| desc_tr      |   String    |                         Turkish description |
+| desc_en      |   String    |                         English description |
+| contactId    |   String    |                          the id for contact |
+| hourId       |   String    |                             the id for hour |
+| ratingId     |   String    |                           the id for rating |
+| adminId      |   String    |                            the id for admin |
+| amenityId    |   String    |                        the id for amenityId |
+| createdAt    |   String    |                               creation time |
+| updatedAt    |   String    |                                 update time |
+| products     | Product [ ] |                               product array |
+| bookings     | Booking [ ] |                               booking array |
 
-### outsider_sex schema
+### <a id="sex-options"></a>Sex Options
 
-| Key | Type |                 Description |
-| :-- | :--: | --------------------------: |
-| sex | Int  |           0: women , 1: men |
-| day | Int  | days as numbers in momentjs |
+| Key | Description |
+| :-- | ----------: |
+| 0   |       women |
+| 1   |         men |
+| 2   |      unisex |
+
+### <a id="pay-options"></a>Pay Options
+
+| Key |         Description |
+| :-- | ------------------: |
+| 0   |           only cash |
+| 1   | accepts credit card |
+
+### <a id="outsider-sex-schema"></a>Outsider Sex Schema
+
+| Key | Type |                  Description |
+| :-- | :--: | ---------------------------: |
+| sex | Int  |            0: women , 1: men |
+| day | Int  | days as numbers in Moment.js |
