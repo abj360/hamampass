@@ -1,0 +1,16 @@
+model Rating {
+  id           String @id @default(uuid())
+  count        Int
+  rate_overall Float
+
+  rate_location        Float
+  rate_staff           Float
+  rate_atmosphere      Float
+  rate_cleanliness     Float
+  rate_facilities      Float
+  rate_value_for_money Float
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Property  Property[]
+}
