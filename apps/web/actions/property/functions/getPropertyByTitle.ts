@@ -11,7 +11,7 @@ const getPropertyByTitle = async (req: NextRequest) => {
 
   // Build the where clause dynamically
   const whereClause: any = { title };
-  if (gender) {
+  if (gender == "0" || gender == "1") {
     whereClause.sex = +gender;
   }
 
