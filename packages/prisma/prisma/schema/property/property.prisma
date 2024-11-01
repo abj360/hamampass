@@ -1,7 +1,7 @@
 model Property {
   id String @id @unique @default(uuid())
 
-  title        String   
+  title        String
   sex          Int
   outsider_sex Json[]
   photos       String[]

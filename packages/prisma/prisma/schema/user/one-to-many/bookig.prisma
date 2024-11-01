@@ -30,11 +30,26 @@ model Review {
   rate    Float
   comment String
 
-  bookingId String  @unique
-  booking   Booking @relation(fields: [bookingId], references: [id])
+  detailsId    String?         @unique
+  rate_details Review_Details? @relation(fields: [detailsId], references: [id], onDelete: Cascade)
+  bookingId    String          @unique
+  booking      Booking         @relation(fields: [bookingId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Review_Details {
+  id String @id @default(uuid())
+
+  location        Int
+  staff           Int
+  atmosphere      Int
+  cleanliness     Int
+  facilities      Int
+  value_for_money Int
+
+  review Review?
 }
 
 // enum Review_Type{
