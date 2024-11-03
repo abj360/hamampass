@@ -21,6 +21,7 @@ import SortComponent from "@/components/pages/properties/filters/sort";
 import SexComponent from "@/components/pages/properties/filters/sex";
 import PaymentMethodComponent from "@/components/pages/properties/filters/pay";
 import RangeComponent from "@/components/pages/properties/filters/range";
+import SpaceComponent from "./isPublic";
 import { useSelector } from "react-redux";
 import { Button } from "@hamampass/ui/primitives/button.tsx";
 import { useRouter } from "next/navigation";
@@ -70,6 +71,7 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
           <RangeComponent />
           <SexComponent />
           <AmenityComponent />
+          <SpaceComponent />
         </div>
         <DrawerFooter>
           <DrawerClose>
