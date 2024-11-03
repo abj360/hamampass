@@ -13,10 +13,22 @@ const createReview = async (req: NextRequest) => {
       rate.value_for_money) /
     6;
 
+  const details = await prisma.review_Details.create({
+    data: {
+      location: rate.location,
+      staff: rate.staff,
+      atmosphere: rate.atmosphere,
+      cleanliness: rate.cleanliness,
+      facilities: rate.facilities,
+      value_for_money: rate.value_for_money,
+    },
+  });
+
   const review = await prisma.review.create({
     data: {
       rateObj: rate,
       rate: rate_overall,
+      detailsId: details.id,
       comment,
       bookingId,
     },

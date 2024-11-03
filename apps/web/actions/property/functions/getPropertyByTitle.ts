@@ -6,10 +6,17 @@ const getPropertyByTitle = async (req: NextRequest) => {
   const pre_title = url.pathname.split("/").pop()?.replace(/-/g, " ") || "";
   const title = decodeURI(pre_title);
 
+  // Access the gender query parameter
+  const gender = url.searchParams.get("gender");
+
+  // Build the where clause dynamically
+  const whereClause: any = { title };
+  if (gender == "0" || gender == "1") {
+    whereClause.sex = +gender;
+  }
+
   const property = await prisma.property.findFirst({
-    where: {
-      title,
-    },
+    where: whereClause,
     include: {
       contact: true,
       hour: true,

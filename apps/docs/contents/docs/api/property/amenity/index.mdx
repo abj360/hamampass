@@ -5,12 +5,43 @@ description: This documentation will help you get familiar with the resources of
 
 ## Amentiy Schema
 
-| Key          |     Type     |           Description |
-| :----------- | :----------: | --------------------: |
-| id           |    String    |                    id |
-| items        |   Int [ ]    |            item array |
-| facilities   |   Int [ ]    |      facilities array |
-| foods_drinks |   Int [ ]    | food and drinks array |
-| createdAt    |    String    |         creation time |
-| updatedAt    |    String    |           update time |
-| Property     | Property [ ] |        property array |
+| Key          |     Type     |                                     Description |
+| :----------- | :----------: | ----------------------------------------------: |
+| id           |    String    |                                              id |
+| items        |   Int [ ]    |             [Item Array Options](#Item-options) |
+| facilities   |   Int [ ]    | [Facilities Array Options](#Facilities-options) |
+| foods_drinks |   Int [ ]    |           [Foods Array Options](#Foods-options) |
+| createdAt    |    String    |                                   creation time |
+| updatedAt    |    String    |                                     update time |
+| Property     | Property [ ] |                                  property array |
+
+### <a id="Item-options"></a>Item Array Options
+
+| Key | Description |
+| :-- | ----------: |
+| 0   |       towel |
+| 1   |        soap |
+
+### <a id="Facilities-options"></a>Facilities Array Options
+
+| Key |  Description |
+| :-- | -----------: |
+| 0   |       toilet |
+| 1   | resting room |
+| 2   |      lockers |
+| 3   |       shower |
+| 4   |        sauna |
+| 5   |   steam room |
+| 6   |      Jacuzzi |
+| 7   |         pool |
+| 8   |      massage |
+| 9   |   ice bucket |
+| 10  |     ice pool |
+| 11  |  car parking |
+
+### <a id="Foods-options"></a>Foods Array Options
+
+| Key | Description |
+| :-- | ----------: |
+| 0   |         tea |
+| 1   |      coffee |

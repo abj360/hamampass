@@ -1,0 +1,12 @@
+model User {
+  id          String    @id @default(uuid())
+  name        String
+  email       String    @unique
+  image       String
+  nationality String?
+  age_range   Int
+  gender      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  Booking     Booking[]
+}

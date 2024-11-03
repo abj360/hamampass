@@ -5,15 +5,23 @@ description: This documentation will help you get familiar with the resources of
 
 ## Contact Schema
 
-| Key       |     Type     |                   Description |
-| :-------- | :----------: | ----------------------------: |
-| id        |    Strig     |                            id |
-| city      |    String    |    Name of the city in turkey |
-| district  |    String    |  Name of the district in city |
-| phone     |    String    |  phone number including "+90" |
-| map_link  |    String    | google maps link of the place |
-| address   |    String    |      Full adress of the place |
-| location  |  Float [ ]   |  [ lat: float , long: float ] |
-| createdAt |    String    |                 creation time |
-| updatedAt |    String    |                   update time |
-| Property  | Property [ ] |                property array |
+| Key       |     Type     |                           Description |
+| :-------- | :----------: | ------------------------------------: |
+| id        |    Strig     |                                    id |
+| city      |    String    |            Name of the city in turkey |
+| district  |    String    |          Name of the district in city |
+| phone     |    String    |          phone number including "+90" |
+| map_link  |    String    |         google maps link of the place |
+| address   |    String    |              Full adress of the place |
+| location  |  Float [ ]   | [Location Options](#location-options) |
+| createdAt |    String    |                         creation time |
+| updatedAt |    String    |                           update time |
+| Property  | Property [ ] |                        property array |
+
+### <a id="location-options"></a>Location Array Schema
+
+[ lat: float , long: float ]
+| Key | Type | Description |
+| :-- | :---: | ---------------------------: |
+| lat | Float | Latitute of the coordinate |
+| lng | Float | Longtitude of the coordinate |

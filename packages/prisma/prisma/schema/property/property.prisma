@@ -1,0 +1,29 @@
+model Property {
+  id String @id @unique @default(uuid())
+
+  title        String
+  sex          Int
+  outsider_sex Json[]
+  photos       String[]
+  pay          Int      @default(0)
+  desc_tr      String?
+  desc_en      String?
+
+  bookings Booking[]
+  products Product[]
+  days     Days[]
+
+  admin     Admin?   @relation(fields: [adminId], references: [id])
+  adminId   String?
+  contact   Contact? @relation(fields: [contactId], references: [id])
+  contactId String?
+  hour      Hour?    @relation(fields: [hourId], references: [id])
+  hourId    String?
+  rating    Rating?  @relation(fields: [ratingId], references: [id])
+  ratingId  String?  @unique
+  amenity   Amenity? @relation(fields: [amenityId], references: [id])
+  amenityId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

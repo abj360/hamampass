@@ -1,0 +1,7 @@
+model Admin {
+  id       String @id @default(uuid())
+  password String
+
+  subscriptions Json[]     @default([])
+  properties    Property[]
+}

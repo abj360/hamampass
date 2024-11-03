@@ -5,15 +5,32 @@ description: This documentation will help you get familiar with the resources of
 
 ## User Schema
 
-| Key         |    Type     |                                       Description |
-| :---------- | :---------: | ------------------------------------------------: |
-| id          |   String    |                                                id |
-| name        |   String    |                                Name of the Person |
-| email       |   String    |                               email of the person |
-| image       |   String    |                                    avatar img url |
-| nationality |   String    |                            the tld of the country |
-| age_range   |     Int     | 0_17: 0 , 18_24: 1 , 25_30: 2 , 31_40: 3 , 41+: 4 |
-| gender      |     Int     |                               female: 0 , male: 1 |
-| createdAt   |   String    |                                     creation time |
-| updatedAt   |   String    |                                       update time |
-| Booking     | Booking [ ] |                                     booking array |
+| Key         |    Type     |                       Description |
+| :---------- | :---------: | --------------------------------: |
+| id          |   String    |                                id |
+| name        |   String    |                Name of the Person |
+| email       |   String    |               email of the person |
+| image       |   String    |                    avatar img url |
+| nationality |   String    |            the tld of the country |
+| age_range   |     Int     | [Age range options](#age-options) |
+| gender      |     Int     | [Gender options](#gender-options) |
+| createdAt   |   String    |                     creation time |
+| updatedAt   |   String    |                       update time |
+| Booking     | Booking [ ] |                     booking array |
+
+### <a id="age-schema"></a>age range options
+
+| index | Description |
+| :---: | ----------: |
+|   0   |      0 - 17 |
+|   1   |     18 - 24 |
+|   2   |     25 - 30 |
+|   3   |     31 - 40 |
+|   4   |         41+ |
+
+### <a id="gender-schema"></a>gender options
+
+| index | Description |
+| :---: | ----------: |
+|   0   |      female |
+|   1   |        male |

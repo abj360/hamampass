@@ -52,7 +52,7 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
     }
   };
 
-  const c = useTranslations("home.load-btn");
+  const c = useTranslations("home");
 
   return (
     <div className="flex flex-col items-center mx-4 mb-10 gap-6">
@@ -67,7 +67,7 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
           className="bg-primary-10 w-4/5 mt-2 mb-4"
           onClick={handleLoadMore}
         >
-          {c("button")}
+          {c("load-btn")}
         </Button>
       )}
     </div>

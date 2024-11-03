@@ -1,0 +1,6 @@
+model Country {
+  tld     String @id @default(uuid())
+  name_tr String
+  name_en String
+  image   String
+}

@@ -11,12 +11,11 @@ import {
 } from "./pure";
 import { pipe } from "ramda";
 import { TProperty } from "@hamampass/db/types";
-import { tr } from "date-fns/locale";
 
 async function getAllProperties(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const page = parseInt(searchParams.get("page") || "1");
-  const limit = parseInt(searchParams.get("limit") || "5");
+  const limit = parseInt(searchParams.get("limit") || "6");
   const sort = searchParams.get("sort");
   const review = searchParams.get("review");
   const amenity = searchParams.get("amenity");
