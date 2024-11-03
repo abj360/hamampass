@@ -1,0 +1,8 @@
+model Partner {
+  id        String   @id @unique @default(uuid())
+  partnerId String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings Booking[] // One-to-many relation with Booking
+}

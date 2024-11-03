@@ -3,7 +3,7 @@ model Property {
 
   title        String
   sex          Int
-  isPublic    Boolean  @default(true)
+  isPublic     Boolean  @default(true)
   outsider_sex Json[]
   photos       String[]
   pay          Int      @default(0)

@@ -1,0 +1,27 @@
+model Booking {
+  id         String   @id @unique @default(uuid())
+  date       DateTime
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id])
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  products   Json
+  totalMoney Float
+  review     Review?
+  partnerId  String? // Optional field to allow one or no Partner
+  partner    Partner? @relation(fields: [partnerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// products : {
+//   "0":{
+//     count: 1,
+//     price: 100
+//   },
+//   "1":{
+//     count: 2,
+//     price: 200
+//   }
+// }
