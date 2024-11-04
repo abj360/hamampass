@@ -4,6 +4,7 @@ import { convertGenderIcon } from "@/utils/icon_translations";
 
 const Gender = ({ property }: { property: TProperty }) => {
   const sex_type = useTranslations("home.filters.sex");
+
   return (
     <div className="text-slate-500 flex gap-1 -ml-1 items-center justify-center">
       <p className="text-sm">

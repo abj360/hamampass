@@ -12,14 +12,10 @@ import {
   CarouselItem,
 } from "@hamampass/ui/primitives/carousel.tsx";
 import { MdLocationOn } from "react-icons/md";
-import { IoIosMan } from "react-icons/io";
-import { IoIosWoman } from "react-icons/io";
 import Gender from "./gender";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
-  const sex_type = useTranslations("home.filters.sex");
-  const product_type = useTranslations("home.product-type");
 
   const [sortedProducts, setSortedProducts] = useState(property.products);
   const [activeSlide, setActiveSlide] = useState(0);

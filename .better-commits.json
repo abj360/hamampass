@@ -112,6 +112,10 @@
         "label": "admin"
       },
       {
+        "value": "partner",
+        "label": "partner"
+      },
+      {
         "value": "docs",
         "label": "docs"
       },
