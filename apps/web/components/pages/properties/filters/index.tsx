@@ -82,7 +82,7 @@ const FilterComponent: React.FC = () => {
     <div className="sticky top-0 z-20 bg-white py-1">
       <div className="flex items-center border border-primary-10 rounded-lg mx-4 my-2 gap-1 relative">
         <IoSearchSharp size={22} className="mb-[.1rem] ml-2" />
-        <Input
+        {/* <Input
           type="text"
           id="district"
           placeholder={input("placeholder")}
@@ -91,6 +91,13 @@ const FilterComponent: React.FC = () => {
           onClick={handleInputClick}
           className="flex-1"
           autoComplete="off"
+        /> */}
+        <Input
+          type="text"
+          id="district"
+          value="Fatih / Istanbul"
+          className="flex-1"
+          readOnly
         />
         <DrawerComponent
           trigger={
