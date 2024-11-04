@@ -5,9 +5,12 @@ import BannerSection from "./banner";
 import HeroSection from "./hero";
 import CardSection from "./card";
 import StickyHeader from "./sticky-header";
+import { useSearchParams } from "next/navigation";
 
 const HomePage = ({ locale }: { locale: string }) => {
   const [isStickyVisible, setIsStickyVisible] = useState(false);
+  const searchParams = useSearchParams();
+  const partnerParam = searchParams?.get("partner");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +27,10 @@ const HomePage = ({ locale }: { locale: string }) => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    partnerParam && sessionStorage.setItem("partnerId", partnerParam);
+  }, [partnerParam]);
 
   return (
     <div className="flex flex-col min-h-svh">
