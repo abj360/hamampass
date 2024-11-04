@@ -7,6 +7,7 @@ import {
   sortProperties,
   sortReviews,
   filterByRange,
+  filterSpace,
   paginate,
 } from "./pure";
 import { pipe } from "ramda";
@@ -21,14 +22,22 @@ async function getAllProperties(req: NextRequest) {
   const amenity = searchParams.get("amenity");
   const sex = searchParams.get("sex");
   const range = searchParams.get("range");
+  const space = searchParams.get("space");
 
   // Collect all other filters
   const filters: Record<string, string | string[]> = {};
   searchParams.forEach((value, key) => {
     if (
-      !["page", "limit", "sort", "amenity", "sex", "range", "review"].includes(
-        key
-      )
+      ![
+        "page",
+        "limit",
+        "sort",
+        "amenity",
+        "sex",
+        "range",
+        "review",
+        "space",
+      ].includes(key)
     ) {
       filters[key] = value;
     }
@@ -51,6 +60,7 @@ async function getAllProperties(req: NextRequest) {
       sortProperties(sort),
       sortReviews(review),
       filterByRange(range),
+      filterSpace(space),
       paginate({ page, limit })
     );
 

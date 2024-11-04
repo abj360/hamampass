@@ -1,4 +1,5 @@
 import { TProduct, TProperty } from "@hamampass/db/types";
+import { is } from "date-fns/locale";
 
 const filterByAmenity =
   (amenity: string | null) =>
@@ -94,6 +95,17 @@ const paginate =
     return properties.slice(startIndex, endIndex);
   };
 
+const filterSpace =
+  (space: string | null) =>
+  (properties: TProperty[]): TProperty[] => {
+    if (!space) {
+      return properties; // Return all properties if space is null
+    }
+
+    const isPublic = space === "1"; // Convert space to boolean
+    return properties.filter((property) => property.isPublic === isPublic);
+  };
+
 export {
   filterByKeys,
   filterByAmenity,
@@ -101,5 +113,6 @@ export {
   sortProperties,
   sortReviews,
   filterByRange,
+  filterSpace,
   paginate,
 };

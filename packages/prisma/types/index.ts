@@ -67,6 +67,7 @@ export interface THour {
 export interface TProperty {
   id: string;
   title: string;
+  isPublic: boolean;
   contactId: string;
   hourId: string;
   amenityId: string;
