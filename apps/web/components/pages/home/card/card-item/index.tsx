@@ -14,6 +14,7 @@ import {
 import { MdLocationOn } from "react-icons/md";
 import { IoIosMan } from "react-icons/io";
 import { IoIosWoman } from "react-icons/io";
+import Gender from "./gender";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -92,7 +93,9 @@ const CardItem = ({ property }: { property: TProperty }) => {
         <div>
           <div className="text-sm text-left mt-2 flex  items-end justify-start text-gray-500 ">
             <MdLocationOn className="text-orange-700/90 w-5 h-5" />
-            <p className="text-xs">Besiktas / Istanbul</p>
+            <p className="text-xs">
+              {property.contact.district} / {property.contact.city}
+            </p>
           </div>
           <div className="flex items-center justify-between ">
             <h2 className="text-xl font-semibold text-slate-700">
@@ -120,14 +123,16 @@ const CardItem = ({ property }: { property: TProperty }) => {
 
           <Separator className="text-sgray-200 mt-2 mb-2" />
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <div className="flex ">
                 <IoIosMan size={22} />
                 <IoIosWoman size={22} className=" -mx-2" />
               </div>
 
               <p className="text-lg">Unisex</p>
-            </div>
+            </div> */}
+            <Gender property={property} />
+
             <div className="flex gap-1 items-center">
               <span className=" text-gray-500">from</span>
               <span className="font-semibold text-lg text-slate-800">

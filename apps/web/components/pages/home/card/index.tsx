@@ -3,16 +3,33 @@
 import data from "./data";
 import CardItem from "./card-item";
 import { TProperty } from "@hamampass/db/types";
+import { request } from "@hamampass/services";
+import { useEffect, useState } from "react";
 
 const CardSection = () => {
   const property = data[0] as unknown as TProperty;
+  const [properties, setProperties] = useState<TProperty[]>();
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      const req = await request({
+        type: "get",
+        endpoint: "property",
+        params: {
+          limit: 3,
+        },
+      });
+      setProperties(req.data.data);
+    };
+
+    fetchProperties();
+  }, []);
+
   return (
     <div className="mt-6 mx-3 flex flex-col gap-10">
-      {Array(3)
-        .fill(property)
-        .map((_, index) => (
-          <CardItem key={index} property={property} />
-        ))}
+      {properties?.map((property) => (
+        <CardItem key={property.id} property={property} />
+      ))}
     </div>
   );
 };
