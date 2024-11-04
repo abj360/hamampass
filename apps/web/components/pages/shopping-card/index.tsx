@@ -89,6 +89,7 @@ const ShoppingCardPage = () => {
             userId: data?.user?.id,
             products,
             totalMoney,
+            partnerId: sessionStorage.getItem("partnerId"),
           },
         });
 

@@ -18,8 +18,16 @@ const convertKey = (key: number) => {
 const createBooking = async (req: NextRequest) => {
   moment.locale("tr");
 
-  const { date, propertyId, adminId, userId, products, totalMoney } =
+  const { date, propertyId, adminId, userId, products, totalMoney, partnerId } =
     await req.json();
+
+  const partner =
+    partnerId &&
+    (await prisma.partner.findUnique({
+      where: {
+        partnerId,
+      },
+    }));
 
   const booking = await prisma.booking.create({
     data: {
@@ -28,8 +36,11 @@ const createBooking = async (req: NextRequest) => {
       userId,
       totalMoney,
       products,
+      ...(partnerId && { partnerId: partner?.id }),
     },
   });
+
+  console.log("booking", booking);
 
   const desc = `${moment(new Date(date)).format("DD MMMM dddd")}, ${Object.keys(
     products
