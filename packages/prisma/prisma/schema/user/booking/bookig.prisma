@@ -8,7 +8,7 @@ model Booking {
   products   Json
   totalMoney Float
   review     Review?
-  partnerId  String? // Optional field to allow one or no Partner
+  partnerId  String? 
   partner    Partner? @relation(fields: [partnerId], references: [id])
 
   createdAt DateTime @default(now())
