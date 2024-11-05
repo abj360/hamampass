@@ -32,6 +32,7 @@ yarn-error.log*
 !packages/services/.env
 !apps/web/.env
 !apps/admin/.env
+!apps/partner/.env
 
 # vercel
 .vercel
