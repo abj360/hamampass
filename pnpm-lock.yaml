@@ -274,6 +274,12 @@ importers:
 
   apps/partner:
     dependencies:
+      '@hamampass/db':
+        specifier: workspace:*
+        version: link:../../packages/prisma
+      moment:
+        specifier: ^2.30.1
+        version: 2.30.1
       next:
         specifier: 15.0.2
         version: 15.0.2(react-dom@19.0.0-rc-02c0e824-20241028(react@19.0.0-rc-02c0e824-20241028))(react@19.0.0-rc-02c0e824-20241028)
