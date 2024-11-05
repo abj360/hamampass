@@ -30,6 +30,7 @@ const Star5Component = ({
 };
 
 const ReviewInfo = ({ booking }: { booking: TBooking }) => {
+  if (!booking.review) return null;
   const gender = useTranslations("single.review.gender");
   const info = useTranslations("my-bookings.review.info");
   return (
