@@ -43,9 +43,17 @@ export interface TBooking {
   user: TUser;
   products: JSON;
   property: TProperty;
-  review: TReview;
+  review?: TReview;
   date: string;
   totalMoney: number;
+}
+
+export interface TPartner {
+  id: string;
+  partnerId: string;
+  name: string;
+  commision: number;
+  bookings: TBooking[];
 }
 
 export interface THour {
