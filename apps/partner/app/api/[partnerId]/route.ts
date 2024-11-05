@@ -3,13 +3,8 @@ import prisma from "@hamampass/db";
 
 export async function GET(req: NextRequest) {
   try {
-    console.log("Request received:", req.url);
-
     const url = new URL(req.url);
-    console.log("Parsed URL:", url.toString());
-
     const partnerId = url.pathname.split("/").pop() || "";
-    console.log("Extracted partnerId:", partnerId);
 
     if (!partnerId) {
       console.error("Partner ID is missing.");
