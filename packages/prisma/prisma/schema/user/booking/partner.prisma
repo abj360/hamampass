@@ -1,8 +1,8 @@
 model Partner {
   id        String   @id @unique @default(uuid())
   partnerId String   @unique
-  name      String  
-  commision Int     @default(5)
+  name      String
+  commision Int      @default(5)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

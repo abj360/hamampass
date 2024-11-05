@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     }
 
     console.log("Fetching partner data from database...");
-    const fetchedPartner = await prisma.partner.findFirst({
+    const fetchedPartner = await prisma.partner.findUnique({
       where: {
         id: partnerId,
       },
