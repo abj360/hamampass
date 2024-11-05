@@ -6,8 +6,6 @@ export async function GET(req: NextRequest) {
     const url = new URL(req.url);
     const partnerId = url.pathname.split("/").pop() || "";
 
-    console.log("partnerId", partnerId);
-
     const fetchedPartner = await prisma.partner.findUnique({
       where: {
         id: partnerId,
