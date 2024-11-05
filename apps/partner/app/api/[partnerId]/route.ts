@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
 
     const fetchedPartner = await prisma.partner.findUnique({
       where: {
-        partnerId: partnerId,
+        id: partnerId,
       },
       include: {
         bookings: {

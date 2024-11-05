@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/tr";
 import { TPartner, TBooking } from "@hamampass/db/types";
-
 import { useRouter } from "next/navigation";
 
 const Home = () => {
@@ -11,9 +10,15 @@ const Home = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const partnerId = sessionStorage.getItem("partnerId");
+    // Only run this in the client environment
+    if (typeof window !== "undefined") {
+      const partnerId = sessionStorage.getItem("partnerId");
 
-    if (partnerId) {
+      if (!partnerId) {
+        router.push("/login");
+        return;
+      }
+
       moment.locale("tr");
 
       const fetchPartnerData = async () => {
@@ -27,16 +32,7 @@ const Home = () => {
 
       fetchPartnerData().catch(console.error); // Handle potential errors
     }
-  }, []);
-
-  useEffect(() => {
-    console.log(partner);
-  }, [partner]);
-
-  if (!sessionStorage.getItem("partnerId")) {
-    router.push("/login");
-    return null;
-  }
+  }, [router]);
 
   return (
     <main className="flex flex-col items-center mt-2 mx-5">

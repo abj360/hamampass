@@ -1,10 +1,16 @@
 "use client"; // This is a client component
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const LoginPage = () => {
   const router = useRouter();
   const [partnerId, setPartnerId] = useState("");
+
+  useEffect(() => {
+    if (sessionStorage.getItem("partnerId")) {
+      router.push("/");
+    }
+  }, [router]);
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,10 +22,6 @@ const LoginPage = () => {
     router.push("/");
   };
 
-  if (sessionStorage.getItem("partnerId")) {
-    router.push("/");
-    return null;
-  }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-2xl font-bold mb-4">Login Page</h1>
