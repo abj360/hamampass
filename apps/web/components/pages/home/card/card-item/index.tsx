@@ -13,6 +13,7 @@ import {
 } from "@hamampass/ui/primitives/carousel.tsx";
 import { MdLocationOn } from "react-icons/md";
 import Gender from "./gender";
+import { request } from "@hamampass/services";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -21,11 +22,19 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const [activeSlide, setActiveSlide] = useState(0);
   const router = useRouter();
 
-  const handleCardClick = () => {
+  const handleCardClick = async () => {
+    const req = await request({
+      type: "get",
+      endpoint: `admin/${property?.id}`,
+    });
+    console.log(req.data);
+
+    const genderParam = req.data;
+
     const convertedTitle = encodeURIComponent(
       property.title.replace(/ /g, "-")
     );
-    router.push(`/${locale}/${convertedTitle}`);
+    router.push(`/${locale}/${genderParam ?? ""}${convertedTitle}`);
   };
 
   useEffect(() => {

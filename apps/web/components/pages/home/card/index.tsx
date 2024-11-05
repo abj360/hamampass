@@ -1,13 +1,11 @@
 "use client";
 
-import data from "./data";
 import CardItem from "./card-item";
 import { TProperty } from "@hamampass/db/types";
 import { request } from "@hamampass/services";
 import { useEffect, useState } from "react";
 
 const CardSection = () => {
-  const property = data[0] as unknown as TProperty;
   const [properties, setProperties] = useState<TProperty[]>();
 
   useEffect(() => {
