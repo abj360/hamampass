@@ -6,7 +6,7 @@ const LoginPage = () => {
   const router = useRouter();
   const [partnerId, setPartnerId] = useState("");
 
-  const handleLogin = (e: any) => {
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // Store the partnerId in sessionStorage

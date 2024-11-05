@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(fetchedPartner);
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch property" },
+      { error: "Failed to fetch property" + error },
       { status: 500 }
     );
   }
