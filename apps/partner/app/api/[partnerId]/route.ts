@@ -3,9 +3,23 @@ import prisma from "@hamampass/db";
 
 export async function GET(req: NextRequest) {
   try {
-    const url = new URL(req.url);
-    const partnerId = url.pathname.split("/").pop() || "";
+    console.log("Request received:", req.url);
 
+    const url = new URL(req.url);
+    console.log("Parsed URL:", url.toString());
+
+    const partnerId = url.pathname.split("/").pop() || "";
+    console.log("Extracted partnerId:", partnerId);
+
+    if (!partnerId) {
+      console.error("Partner ID is missing.");
+      return NextResponse.json(
+        { error: "Partner ID is required." },
+        { status: 400 }
+      );
+    }
+
+    console.log("Fetching partner data from database...");
     const fetchedPartner = await prisma.partner.findUnique({
       where: {
         id: partnerId,
@@ -20,10 +34,20 @@ export async function GET(req: NextRequest) {
       },
     });
 
+    if (!fetchedPartner) {
+      console.error("No partner found with the provided ID.");
+      return NextResponse.json(
+        { error: "Partner not found." },
+        { status: 404 }
+      );
+    }
+
+    console.log("Fetched partner data:", fetchedPartner);
     return NextResponse.json(fetchedPartner);
   } catch (error) {
+    console.error("An error occurred:", error);
     return NextResponse.json(
-      { error: "Failed to fetch property" + error },
+      { error: "Failed to fetch partner data: " + error.message },
       { status: 500 }
     );
   }
