@@ -1,6 +1,5 @@
 model Review {
   id      String @id @default(uuid())
-  rateObj Json
   rate    Float
   comment String
 

@@ -26,7 +26,6 @@ const createReview = async (req: NextRequest) => {
 
   const review = await prisma.review.create({
     data: {
-      rateObj: rate,
       rate: rate_overall,
       detailsId: details.id,
       comment,

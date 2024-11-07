@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import prisma from "@hamampass/db";
 
 const createProperty = async (req: NextRequest) => {
-  const { title, amenity, photos, contact, products } = await req.json();
+  const { title, amenity, photos, contact, products, day } = await req.json();
 
   try {
     const contactRecord = await prisma.contact.create({
@@ -41,6 +41,20 @@ const createProperty = async (req: NextRequest) => {
         },
         adminId: admin.id,
       },
+    });
+
+    // create days record
+
+    [0, 1, 2, 3, 4, 5, 6].map(async (dayIndex) => {
+      await prisma.day.create({
+        data: {
+          propertyId: property.id,
+          dayIndex,
+          sex: day.sex,
+          open: day.open,
+          close: day.close,
+        },
+      });
     });
 
     return property;
