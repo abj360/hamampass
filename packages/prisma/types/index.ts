@@ -97,6 +97,16 @@ export interface TProperty {
   desc_en: string;
   adminId: string;
   [key: string]: any;
+  days: TDay[];
+}
+
+export interface TDay {
+  id: string;
+  propertyId: string;
+  dayIndex: number;
+  sex: number;
+  open: string;
+  close: string;
 }
 
 export interface TAmenity {
