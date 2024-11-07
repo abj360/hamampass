@@ -13,32 +13,3 @@ model Day {
 
 
 
-//    delete this once you do the migration
-//
-//
-//
-//
-
-
-model Hour {
-  id String @id @default(uuid())
-
-  weekdays           String[] // ["09:00", "21:00"]
-  weekends           String[]
-  segregated_details Json?
-
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  Property  Property[]
-}
-
-//  segregated_details {
-//   mens   {
-//     weekdays String[]  // ["09:00", "21:00"]
-//     weekends  String[]
-//   }
-//   womens {
-//     weekdays String[]  // ["09:00", "21:00"]
-//     weekends  String[]
-//   }
-// }

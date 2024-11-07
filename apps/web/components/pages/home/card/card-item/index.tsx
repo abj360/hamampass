@@ -13,6 +13,7 @@ import {
 import { MdLocationOn } from "react-icons/md";
 import Gender from "./gender";
 import { request } from "@hamampass/services";
+import useDay from "@/hooks/useDay";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -22,18 +23,21 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const router = useRouter();
 
   const handleCardClick = async () => {
+    const convertedTitle = encodeURIComponent(
+      property.title.replace(/ /g, "-")
+    );
+
     const req = await request({
       type: "get",
       endpoint: `admin/${property?.id}`,
     });
-    console.log(req.data);
 
-    const genderParam = req.data;
+    if (req.data) {
+      router.push(`/${locale}/${property.sex}${convertedTitle}`);
+      return;
+    }
 
-    const convertedTitle = encodeURIComponent(
-      property.title.replace(/ /g, "-")
-    );
-    router.push(`/${locale}/${genderParam ?? ""}${convertedTitle}`);
+    router.push(`/${locale}/${convertedTitle}`);
   };
 
   useEffect(() => {

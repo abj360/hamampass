@@ -56,35 +56,15 @@ export interface TPartner {
   bookings: TBooking[];
 }
 
-export interface THour {
-  sex: number;
-  weekdays: string[];
-  weekends: string[];
-  segregated_details: {
-    mens: {
-      weekdays: string[];
-      weekends: string[];
-    };
-    womens: {
-      weekdays: string[];
-      weekends: string[];
-    };
-  };
-}
-
 export interface TProperty {
   id: string;
   title: string;
+  sex?: number;
   isPublic: boolean;
   contactId: string;
   hourId: string;
   amenityId: string;
   photos: string[];
-  sex: number;
-  outsider_sex: {
-    sex: number;
-    day: string;
-  }[];
   pay: number;
   createdAt: string;
   updatedAt: string;
@@ -92,7 +72,6 @@ export interface TProperty {
   products: TProduct[];
   amenity: TAmenity;
   rating: TRating;
-  hour: THour;
   desc_tr: string;
   desc_en: string;
   adminId: string;
