@@ -1,9 +1,12 @@
 model Amenity {
-  id           String     @id @default(uuid())
+  id           String @id @default(uuid())
   items        Int[]
   facilities   Int[]
   foods_drinks Int[]
-  Property     Property[]
+
+  // One-to-one relationship with Property (optional and unique)
+  property   Property? @relation
+  propertyId String?   @unique // Make sure this is unique for the one-to-one relationship
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

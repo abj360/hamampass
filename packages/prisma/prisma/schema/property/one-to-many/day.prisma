@@ -1,5 +1,5 @@
 model Day {
-  id         String    @id @default(uuid())
+  id         String @id @default(uuid())
   propertyId String
   dayIndex   Int // 0 for Sunday, 1 for Monday, etc.
   sex        Int // 0 for female, 1 for male, 2 for both
@@ -10,6 +10,3 @@ model Day {
 
   @@unique([propertyId, dayIndex]) // Ensure each day of the week has one entry per week
 }
-
-
-

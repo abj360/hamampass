@@ -3,5 +3,6 @@ model Admin {
   password String
 
   subscriptions Json[]     @default([])
-  properties    Property[]
+  property     Property? @relation
+  propertyId   String?   @unique
 }

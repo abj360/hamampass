@@ -44,6 +44,7 @@ CREATE TABLE "Admin" (
     "id" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "subscriptions" JSONB[] DEFAULT ARRAY[]::JSONB[],
+    "propertyId" TEXT,
 
     CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
@@ -54,6 +55,7 @@ CREATE TABLE "Amenity" (
     "items" INTEGER[],
     "facilities" INTEGER[],
     "foods_drinks" INTEGER[],
+    "propertyId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -71,6 +73,7 @@ CREATE TABLE "Contact" (
     "location" DOUBLE PRECISION[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "propertyId" TEXT,
 
     CONSTRAINT "Contact_pkey" PRIMARY KEY ("id")
 );
@@ -88,6 +91,7 @@ CREATE TABLE "Rating" (
     "rate_value_for_money" DOUBLE PRECISION NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "propertyId" TEXT,
 
     CONSTRAINT "Rating_pkey" PRIMARY KEY ("id")
 );
@@ -96,6 +100,7 @@ CREATE TABLE "Rating" (
 CREATE TABLE "Property" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "sex" INTEGER,
     "isPublic" BOOLEAN NOT NULL DEFAULT true,
     "photos" TEXT[],
     "pay" INTEGER NOT NULL DEFAULT 0,
@@ -141,7 +146,6 @@ CREATE TABLE "Partner" (
 -- CreateTable
 CREATE TABLE "Review" (
     "id" TEXT NOT NULL,
-    "rateObj" JSONB NOT NULL,
     "rate" DOUBLE PRECISION NOT NULL,
     "comment" TEXT NOT NULL,
     "detailsId" TEXT,
@@ -200,10 +204,31 @@ CREATE TABLE "_ProductPracticioners" (
 CREATE UNIQUE INDEX "Day_propertyId_dayIndex_key" ON "Day"("propertyId", "dayIndex");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Admin_propertyId_key" ON "Admin"("propertyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Amenity_propertyId_key" ON "Amenity"("propertyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Contact_propertyId_key" ON "Contact"("propertyId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Rating_propertyId_key" ON "Rating"("propertyId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Property_id_key" ON "Property"("id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Property_adminId_key" ON "Property"("adminId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Property_contactId_key" ON "Property"("contactId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Property_ratingId_key" ON "Property"("ratingId");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Property_amenityId_key" ON "Property"("amenityId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Booking_id_key" ON "Booking"("id");

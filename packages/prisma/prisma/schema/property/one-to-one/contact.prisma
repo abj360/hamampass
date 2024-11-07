@@ -7,7 +7,8 @@ model Contact {
   address  String
   location Float[]
 
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  Property  Property[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  property   Property? @relation
+  propertyId String?   @unique
 }
