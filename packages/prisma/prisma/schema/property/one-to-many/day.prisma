@@ -1,4 +1,4 @@
-model Days {
+model Day {
   id         Int    @id @default(autoincrement())
   propertyId String
   dayIndex   Int // 0 for Sunday, 1 for Monday, etc.
@@ -10,6 +10,15 @@ model Days {
 
   @@unique([propertyId, dayIndex]) // Ensure each day of the week has one entry per week
 }
+
+
+
+//    delete this once you do the migration
+//
+//
+//
+//
+
 
 model Hour {
   id String @id @default(uuid())

@@ -12,7 +12,7 @@ model Property {
 
   bookings Booking[]
   products Product[]
-  days     Days[]
+  days     Day[]
 
   admin     Admin?   @relation(fields: [adminId], references: [id])
   adminId   String?
