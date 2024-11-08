@@ -14,8 +14,8 @@
   "dependencies": {
     "@hamampass/db": "workspace:*",
     "@hamampass/i18n": "workspace:*",
-    "@hamampass/tailwind-config": "workspace:*",
     "@hamampass/services": "workspace:*",
+    "@hamampass/tailwind-config": "workspace:*",
     "@hamampass/ui": "workspace:*",
     "@hookform/resolvers": "^3.9.0",
     "@react-google-maps/api": "^2.19.3",
@@ -25,6 +25,7 @@
     "date-fns": "^3.6.0",
     "hamburger-react": "^2.5.1",
     "lucide-react": "^0.414.0",
+    "mixpanel": "^0.18.0",
     "moment": "^2.30.1",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
