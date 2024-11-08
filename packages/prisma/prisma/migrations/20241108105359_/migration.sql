@@ -44,7 +44,6 @@ CREATE TABLE "Admin" (
     "id" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "subscriptions" JSONB[] DEFAULT ARRAY[]::JSONB[],
-    "propertyId" TEXT,
 
     CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
 );
@@ -202,9 +201,6 @@ CREATE TABLE "_ProductPracticioners" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Day_propertyId_dayIndex_key" ON "Day"("propertyId", "dayIndex");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Admin_propertyId_key" ON "Admin"("propertyId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Amenity_propertyId_key" ON "Amenity"("propertyId");

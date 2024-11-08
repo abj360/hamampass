@@ -1,10 +1,10 @@
 import HomePage from "@/components/pages/home";
-import mixpanel from "@/utils/mixpanel";
+import mp from "@/utils/mixpanel";
 
 export default function Home({ params }: any) {
   const { locale } = params;
 
-  mixpanel.track("Home Page Viewed");
+  mp.track("Homepage Loaded");
 
   return <HomePage locale={locale} />;
 }
