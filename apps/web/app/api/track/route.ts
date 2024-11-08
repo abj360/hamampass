@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 // Initialize Mixpanel with your project token
-const mixpanel = Mixpanel.init("9e19fc53611a15c21d79e7cd2d38ad09");
+const mixpanel = Mixpanel.init("a7dceed30dd9348959db6e29a7af54da");
 
 export async function POST(req: NextRequest) {
   // Extract request data
