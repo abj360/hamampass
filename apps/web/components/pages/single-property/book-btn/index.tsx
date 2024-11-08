@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TProperty } from "@hamampass/db/types";
 import { useTranslations } from "@hamampass/i18n";
 import DrawerGeneral from "@/components/commons/drawer";
+import useTrack from "@/hooks/useTrack";
 
 interface IBookButton {
   property: TProperty;
@@ -11,6 +12,7 @@ interface IBookButton {
 const BookButton = ({ property, content }: IBookButton) => {
   const t = useTranslations("single.book_btn");
   const [isVisible, setIsVisible] = useState(true);
+  const track = useTrack();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +30,12 @@ const BookButton = ({ property, content }: IBookButton) => {
     };
   }, []);
 
+  const handleBookClick = () => {
+    track({
+      event: "book now click",
+    });
+  };
+
   return (
     isVisible && (
       <div className="fixed bottom-0 w-full px-4 py-3 bg-white rounded-t-xl border-t shadow-2xl z-20 flex items-center">
@@ -41,7 +49,10 @@ const BookButton = ({ property, content }: IBookButton) => {
 
         <DrawerGeneral
           trigger={
-            <div className="rounded-xl px-8 bg-primary-500 py-2 text-white font-bold">
+            <div
+              onClick={handleBookClick}
+              className="rounded-xl px-8 bg-primary-500 py-2 text-white font-bold"
+            >
               {t("book")}
             </div>
           }

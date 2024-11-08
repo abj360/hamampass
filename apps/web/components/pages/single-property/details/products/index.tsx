@@ -4,6 +4,7 @@ import { TProduct, TProperty } from "@hamampass/db/types";
 import DrawerComponent from "./drawer";
 import { useTranslations } from "@hamampass/i18n";
 import { convertProductIcon } from "@/utils/icon_translations";
+import useTrack from "@/hooks/useTrack";
 
 interface Props {
   data: TProduct[];
@@ -12,9 +13,16 @@ interface Props {
 
 const ProductsComponent = ({ data, property }: Props) => {
   data = data.sort((a, b) => (a.type > b.type ? 1 : -1));
+  const track = useTrack();
 
   const t = useTranslations("home.product-type");
   const title = useTranslations("titles");
+
+  const handleProductClick = ({ id }: { id: number }) => {
+    track({
+      event: `Product with id: ${id} clicked`,
+    });
+  };
 
   return (
     <section className="mt-4">
@@ -31,6 +39,7 @@ const ProductsComponent = ({ data, property }: Props) => {
               <div
                 key={item.id}
                 className="flex justify-between items-center px-5 border  shadow rounded-lg py-3"
+                onClick={() => handleProductClick({ id: item.type })}
               >
                 <div className="flex gap-3 items-center">
                   {convertProductIcon(item.type)}
