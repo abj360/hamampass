@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
 // Initialize Mixpanel with your project token
-const mixpanel = Mixpanel.init("85d729681726f246c0c43d6611a95d1e");
+const mixpanel = Mixpanel.init("9e19fc53611a15c21d79e7cd2d38ad09");
 
 export async function POST(req: NextRequest) {
   // Extract request data
@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       maxAge: 365 * 24 * 60 * 60 * 1000, // 1-year expiration
     });
+    mixpanel.people.set(userId, {});
   }
 
   // Track the event in Mixpanel with the user's unique ID
