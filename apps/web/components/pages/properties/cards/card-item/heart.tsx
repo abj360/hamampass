@@ -2,8 +2,10 @@ import { FaHeart } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { TProperty } from "@hamampass/db/types";
 import { toast } from "@hamampass/ui/primitives/hooks/use-toast.ts";
+import useTrack from "@/hooks/useTrack";
 const HeartComponent = ({ property }: { property: TProperty }) => {
   const [isWishlist, setIsWishlist] = useState(false);
+  const track = useTrack();
 
   useEffect(() => {
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
@@ -17,6 +19,11 @@ const HeartComponent = ({ property }: { property: TProperty }) => {
 
   const handleWishlistClick = (e: any) => {
     e.stopPropagation();
+
+    track({
+      event: "wishlist heart click",
+    });
+
     const wishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
     if (wishlist) {
       if (wishlist.find((item: TProperty) => item.title === property.title)) {
