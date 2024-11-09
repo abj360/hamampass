@@ -14,6 +14,7 @@ import { MdLocationOn } from "react-icons/md";
 import Gender from "./gender";
 import { request } from "@hamampass/services";
 import useDay from "@/hooks/useDay";
+import useTrack from "@/hooks/useTrack";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -21,8 +22,13 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const [sortedProducts, setSortedProducts] = useState(property.products);
   const [activeSlide, setActiveSlide] = useState(0);
   const router = useRouter();
+  const track = useTrack();
 
   const handleCardClick = async () => {
+    track({
+      event: "home card click",
+    });
+
     const convertedTitle = encodeURIComponent(
       property.title.replace(/ /g, "-")
     );

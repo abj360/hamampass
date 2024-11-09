@@ -25,6 +25,7 @@ import SpaceComponent from "./isPublic";
 import { useSelector } from "react-redux";
 import { Button } from "@hamampass/ui/primitives/button.tsx";
 import { useRouter } from "next/navigation";
+import useTrack from "@/hooks/useTrack";
 
 interface DrawerComponentProps {
   trigger: React.ReactNode;
@@ -35,6 +36,7 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
   const btn = useTranslations("home.filters");
   const searchParams = useSearchParams();
   const router = useRouter();
+  const track = useTrack();
 
   const properties = useSelector(
     (state: any) => state.properties.propertyState
@@ -45,9 +47,16 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
     router.push(newUrl);
   };
 
+  const handleTriggerClick = () => {
+    track({
+      event: "filter click",
+    });
+  };
+
   return (
     <Drawer>
       <DrawerTrigger
+        onClick={handleTriggerClick}
         className={` border-l ${searchParams.size && "border-cyan-500"} `}
       >
         {trigger}

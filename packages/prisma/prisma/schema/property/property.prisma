@@ -14,7 +14,7 @@ model Property {
   days     Day[]
 
   admin     Admin?   @relation(fields: [adminId], references: [id])
-  adminId   String? @unique
+  adminId   String?  
   contact   Contact? @relation(fields: [contactId], references: [id])
   contactId String?  @unique
   rating    Rating?  @relation(fields: [ratingId], references: [id])

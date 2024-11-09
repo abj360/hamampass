@@ -17,9 +17,11 @@ import { MdLocationOn } from "react-icons/md";
 import Amenities from "./lib/amenities";
 import { request } from "@hamampass/services";
 import useDay from "@/hooks/useDay";
+import useTrack from "@/hooks/useTrack";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
+  const track = useTrack();
 
   const product_type = useTranslations("home.product-type");
 
@@ -28,6 +30,9 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const router = useRouter();
 
   const handleCardClick = async () => {
+    track({
+      event: "propeties card click",
+    });
     const convertedTitle = encodeURIComponent(
       property.title.replace(/ /g, "-")
     );
