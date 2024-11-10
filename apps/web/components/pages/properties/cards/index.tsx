@@ -55,17 +55,8 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
   const c = useTranslations("home");
 
   return (
-    <div className="flex flex-col items-center px-2 mt-10  my-4 gap-6 overflow-y-auto">
+    <div className="flex flex-col items-center px-2 my-4 gap-6 overflow-y-auto">
       <div aria-live="polite" className="flex flex-col gap-6">
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
         {properties.map((property: TProperty) => (
           <CardItem key={property.id} property={property} />
         ))}

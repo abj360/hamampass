@@ -31,7 +31,9 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
         modal={false}
       >
         <DrawerContent className="h-full  ">
-          <DrawerHeader className="bg-red-600 ">header</DrawerHeader>
+          <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-24 bg-">
+            <div className="w-20 h-1 bg-gray-700"></div>
+          </DrawerHeader>
           {children}
         </DrawerContent>
       </Drawer>
