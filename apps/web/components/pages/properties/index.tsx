@@ -5,6 +5,7 @@ import { getAllProperties } from "@/actions/property";
 import { NextRequest } from "next/server";
 import { TApiResponse, TProperty } from "@hamampass/db/types";
 import Header from "@/components/commons/new-header";
+import MapDrawerComponent from "./map";
 
 const PropertiesPage = async () => {
   const req = new NextRequest(process.env.BASE_URL!!);
@@ -17,18 +18,13 @@ const PropertiesPage = async () => {
 
   return (
     <div>
-      <div className="ml-4 my-1">
-        <Header variant="white" />
-      </div>
-      <hr />
-      <FilterComponent />
-
-      <HomeTitle />
-      {isApiResponse(res) ? (
-        <Cards serverProperties={res.data} />
-      ) : (
-        <p>Error loading properties</p>
-      )}
+      <MapDrawerComponent>
+        {isApiResponse(res) ? (
+          <Cards serverProperties={res.data} />
+        ) : (
+          <p>Error loading properties</p>
+        )}
+      </MapDrawerComponent>
     </div>
   );
 };

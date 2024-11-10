@@ -61,7 +61,7 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
       >
         {trigger}
       </DrawerTrigger>
-      <DrawerContent className="h-[96%] ">
+      <DrawerContent className="h-full z-[52]">
         <DrawerHeader className="flex items-center   ">
           <DrawerClose className="absolute top-2">
             <IoClose size={28} />
