@@ -31,8 +31,8 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
         modal={false}
       >
         <DrawerContent className="h-full  ">
-          <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-24 bg-">
-            <div className="w-20 h-1 bg-gray-700"></div>
+          <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-18 bg-">
+            <div className="w-20 h-1 bg-gray-700 mt-6"></div>
           </DrawerHeader>
           {children}
         </DrawerContent>
@@ -40,6 +40,17 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
       <div className="h-svh">
         <GoogleMapComponent />
       </div>
+      {/* <div className=" fixed bottom-0   z-[51] bg-red-600">
+        <p className="bg-white border border-black rounded px-3 py-1 ">Map</p>
+      </div> */}
+      {snap === 1 && (
+        <button
+          className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] border border-black bg-white px-2 py-1 rounded-lg"
+          onClick={() => setSnap(1 / 12)}
+        >
+          Map
+        </button>
+      )}
     </div>
   );
 };
