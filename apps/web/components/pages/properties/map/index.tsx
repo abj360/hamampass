@@ -8,6 +8,7 @@ import {
 } from "@hamampass/ui/primitives/drawer.tsx";
 import { useState } from "react";
 import FilterComponent from "@/components/pages/properties/filters";
+import GoogleMapComponent from "./map";
 
 interface DrawerComponentProps {
   trigger: React.ReactNode;
@@ -34,7 +35,9 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
           {children}
         </DrawerContent>
       </Drawer>
-      <div className="bg-gray-400 h-svh"></div>
+      <div className="h-svh">
+        <GoogleMapComponent />
+      </div>
     </div>
   );
 };
