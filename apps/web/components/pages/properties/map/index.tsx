@@ -45,7 +45,7 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
       </div> */}
       {snap === 1 && (
         <button
-          className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] border border-black bg-white px-2 py-1 rounded-lg"
+          className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10  text-white px-4 py-1 rounded-lg"
           onClick={() => setSnap(1 / 12)}
         >
           Map
