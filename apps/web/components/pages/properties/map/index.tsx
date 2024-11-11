@@ -10,10 +10,6 @@ import { useState } from "react";
 import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
 
-interface DrawerComponentProps {
-  trigger: React.ReactNode;
-}
-
 const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
   const snapPoints = [1 / 2, 1 / 12, 1];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
@@ -27,10 +23,9 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
         snapPoints={snapPoints}
         activeSnapPoint={snap}
         setActiveSnapPoint={setSnap}
-        snapToSequentialPoint
         modal={false}
       >
-        <DrawerContent className="h-full  ">
+        <DrawerContent className="h-full">
           <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-18 bg-">
             <div className="w-20 h-1 bg-gray-700 mt-6"></div>
           </DrawerHeader>
