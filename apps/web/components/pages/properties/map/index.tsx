@@ -14,14 +14,11 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
   const snapPoints = [1 / 2, 1 / 12, 1];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
-  const handleSnapClick = () => {
-    setSnap((prevSnap) => (prevSnap === 1 ? 1 / 12 : 1)); // Toggle between full and minimized
-  };
   return (
     <div>
-      <header className="fixed top-0 left-0 w-full bg-black  z-[51]">
+      {/* <header className="fixed top-0 left-0 w-full bg-black  z-[51]">
         <FilterComponent />
-      </header>
+      </header> */}
       <Drawer
         open={true}
         snapPoints={snapPoints}
@@ -44,7 +41,7 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
       {snap === 1 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10  text-white px-4 py-1 rounded-lg"
-          onClick={handleSnapClick}
+          onClick={() => setSnap(1 / 12)}
         >
           Map
         </button>
