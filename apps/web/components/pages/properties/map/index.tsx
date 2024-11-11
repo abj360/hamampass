@@ -11,7 +11,7 @@ import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
-  const snapPoints = [1 / 2, 1 / 12, 1];
+  const snapPoints = [1 / 12, 1 / 2, 1];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   return (
