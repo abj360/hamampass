@@ -49,7 +49,7 @@ const PropertiesMapComponent = () => {
     });
     map.addLayer(markerLayer);
 
-    const generateIconSvg = (content) => {
+    const generateIconSvg = (content: string | number) => {
       const svgString = renderToStaticMarkup(
         <svg xmlns="http://www.w3.org/2000/svg" width="100" height="40">
           <rect
