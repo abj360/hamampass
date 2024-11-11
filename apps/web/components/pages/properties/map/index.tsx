@@ -8,14 +8,64 @@ import {
 import { useState, useEffect } from "react";
 import FilterComponent from "@/components/pages/properties/filters";
 import { PropertiesMapComponent } from "@hamampass/services";
+import Cards from "@/components/pages/properties/cards";
+import { TProperty } from "@hamampass/db/types";
+import { useFetchProperties } from "@/hooks/useFetchProperties";
+import { useSelector } from "react-redux";
+import { request } from "@hamampass/services";
 
-const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
+const MapDrawerComponent = ({
+  serverProperties,
+}: {
+  serverProperties?: TProperty[];
+}) => {
   const snapPoints = [1 / 14, 1 / 2, 50 / 51];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   useEffect(() => {
     setSnap(snapPoints[1]);
   }, []);
+
+  useFetchProperties();
+  const res = useSelector((state: any) => state.properties.propertyState);
+
+  const [properties, setProperties] = useState<TProperty[]>(
+    serverProperties || []
+  );
+  const [page, setPage] = useState({
+    page: 1,
+    max_page: 1,
+  });
+
+  useEffect(() => {
+    setProperties(Array.isArray(res.data) ? res.data : []);
+
+    setPage({
+      page: res.page,
+      max_page: res.max_page,
+    });
+  }, [res]);
+
+  const handleLoadMore = async () => {
+    try {
+      const response = await request({
+        type: "get",
+        endpoint: "property",
+        params: {
+          page: page.page + 1,
+        },
+      });
+
+      setProperties([...properties, ...response.data.data]);
+
+      setPage({
+        page: response.data.page,
+        max_page: response.data.max_page,
+      });
+    } catch (error) {
+      console.error("Error fetching properties:", error);
+    }
+  };
 
   return (
     <div>
@@ -35,11 +85,16 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
             <div className="w-14 h-1 bg-gray-400 rounded-xl" />
             <p className="text-sm">2 hamams found</p>
           </DrawerHeader>
-          {children}
+
+          <Cards
+            properties={properties}
+            page={page}
+            handleLoadMore={handleLoadMore}
+          />
         </DrawerContent>
       </Drawer>
       <div className="h-svh">
-        <PropertiesMapComponent />
+        <PropertiesMapComponent properties={properties} />
       </div>
       {snap === 50 / 51 && (
         <button

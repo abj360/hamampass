@@ -18,13 +18,11 @@ const PropertiesPage = async () => {
 
   return (
     <div>
-      <MapDrawerComponent>
-        {isApiResponse(res) ? (
-          <Cards serverProperties={res.data} />
-        ) : (
-          <p>Error loading properties</p>
-        )}
-      </MapDrawerComponent>
+      {isApiResponse(res) ? (
+        <MapDrawerComponent serverProperties={res.data} />
+      ) : (
+        <p>Error loading properties</p>
+      )}
     </div>
   );
 };

@@ -12,14 +12,18 @@ import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { renderToStaticMarkup } from "react-dom/server";
 import { defaults as defaultControls } from "ol/control";
-import { data } from "./data";
+import { TProperty } from "@hamampass/db/types";
 
 const containerStyle = {
   width: "100%",
   height: "100%",
 };
 
-const PropertiesMapComponent = () => {
+const PropertiesMapComponent = ({
+  properties,
+}: {
+  properties: TProperty[];
+}) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -79,7 +83,7 @@ const PropertiesMapComponent = () => {
       return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
     };
 
-    data?.forEach((property) => {
+    properties?.forEach((property) => {
       const { location } = property.contact;
       if (location) {
         const markerFeature = new Feature({
@@ -112,7 +116,7 @@ const PropertiesMapComponent = () => {
     });
 
     return () => map.setTarget(undefined);
-  }, [data]);
+  }, [properties]);
 
   return <div ref={mapRef} style={containerStyle}></div>;
 };

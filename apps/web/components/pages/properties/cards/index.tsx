@@ -7,51 +7,24 @@ import { TProperty } from "@hamampass/db/types";
 
 import { Button } from "@hamampass/ui/primitives/button.tsx";
 import CardItem from "@/components/pages/properties/cards/card-item";
-import { useSelector } from "react-redux";
-import { useFetchProperties } from "@/hooks/useFetchProperties";
 
-const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
-  useFetchProperties();
-  const res = useSelector((state: any) => state.properties.propertyState);
+// const [page, setPage] = useState({
+//   page: 1,
+//   max_page: 1,
+// });
 
-  const [properties, setProperties] = useState<TProperty[]>(
-    serverProperties || []
-  );
-  const [page, setPage] = useState({
-    page: 1,
-    max_page: 1,
-  });
-
-  useEffect(() => {
-    setProperties(Array.isArray(res.data) ? res.data : []);
-
-    setPage({
-      page: res.page,
-      max_page: res.max_page,
-    });
-  }, [res]);
-
-  const handleLoadMore = async () => {
-    try {
-      const response = await request({
-        type: "get",
-        endpoint: "property",
-        params: {
-          page: page.page + 1,
-        },
-      });
-
-      setProperties([...properties, ...response.data.data]);
-
-      setPage({
-        page: response.data.page,
-        max_page: response.data.max_page,
-      });
-    } catch (error) {
-      console.error("Error fetching properties:", error);
-    }
+const Cards = ({
+  properties,
+  page,
+  handleLoadMore,
+}: {
+  properties: TProperty[];
+  page: {
+    page: number;
+    max_page: number;
   };
-
+  handleLoadMore: () => void;
+}) => {
   const c = useTranslations("home");
 
   return (
