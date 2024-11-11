@@ -38,7 +38,7 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
         </DrawerContent>
       </Drawer>
       <div className="h-svh bg-black">{/* <GoogleMapComponent /> */}</div>
-      {snap === 1 && (
+      {snap === 15 / 16 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10 text-white px-4 py-1 rounded-lg"
           onClick={() => setSnap(1 / 12)}
