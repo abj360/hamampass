@@ -60,18 +60,6 @@ const Cards = ({ serverProperties }: { serverProperties: TProperty[] }) => {
         {properties.map((property: TProperty) => (
           <CardItem key={property.id} property={property} />
         ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
-        {properties.map((property: TProperty) => (
-          <CardItem key={property.id} property={property} />
-        ))}
       </div>
 
       {page.max_page > page.page && (
