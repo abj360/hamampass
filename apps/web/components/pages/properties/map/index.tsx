@@ -7,7 +7,6 @@ import {
 } from "@hamampass/ui/primitives/drawer.tsx";
 import { useState, useEffect } from "react";
 import FilterComponent from "@/components/pages/properties/filters";
-import GoogleMapComponent from "./map";
 import { PropertiesMapComponent } from "@hamampass/services";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {

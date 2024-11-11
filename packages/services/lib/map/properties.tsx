@@ -11,27 +11,19 @@ import { Icon, Style } from "ol/style";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
 import { renderToStaticMarkup } from "react-dom/server";
-import { IoHome } from "react-icons/io5";
 import { defaults as defaultControls } from "ol/control";
-import { TContact } from "@hamampass/db/types";
+import { data } from "./data";
 
 const containerStyle = {
   width: "100%",
   height: "100%",
 };
 
-interface PropertiesMapComponentProps {
-  data?: TContact;
-}
-
-const PropertiesMapComponent = ({ data }: PropertiesMapComponentProps) => {
-  const contact = data?.location;
+const PropertiesMapComponent = () => {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const center = contact
-      ? fromLonLat([contact[1], contact[0]])
-      : fromLonLat([28.969379, 40.99645]);
+    const initialCenter = fromLonLat([28.954795, 40.996182]);
 
     // Create the map
     const map = new Map({
@@ -42,7 +34,7 @@ const PropertiesMapComponent = ({ data }: PropertiesMapComponentProps) => {
         }),
       ],
       view: new View({
-        center: center,
+        center: initialCenter,
         zoom: 13,
       }),
       controls: defaultControls({
@@ -52,61 +44,75 @@ const PropertiesMapComponent = ({ data }: PropertiesMapComponentProps) => {
       }),
     });
 
-    // Create the marker icon as an SVG string
-    const iconSvgString = renderToStaticMarkup(
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 64 64"
-        width="64"
-        height="64"
-      >
-        <circle
-          cx="32"
-          cy="32"
-          r="30"
-          fill="purple"
-          stroke="white"
-          strokeWidth="2"
-        />
-        <g transform="translate(16, 16)">
-          <IoHome size={32} color="#FFFFFF" />
-        </g>
-      </svg>
-    );
-    const iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(iconSvgString)}`;
-
-    // Create the marker feature
-    const marker = new Feature({
-      geometry: new Point(center),
-    });
-    marker.setStyle(
-      new Style({
-        image: new Icon({
-          src: iconUrl,
-          scale: 0.75,
-        }),
-      })
-    );
-
-    // Add marker to a vector layer
     const markerLayer = new VectorLayer({
-      source: new VectorSource({
-        features: [marker],
-      }),
+      source: new VectorSource(),
     });
     map.addLayer(markerLayer);
 
-    // Click handler for marker
+    const generateIconSvg = (content) => {
+      const svgString = renderToStaticMarkup(
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="40">
+          <rect
+            x="10"
+            y="5"
+            width="80"
+            height="25"
+            fill="white"
+            stroke="black"
+            stroke-width="1"
+            rx="5"
+            ry="5"
+          />
+          <text
+            x="50%"
+            y="50%"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            font-size="18"
+            font-weight="bold"
+            fill="black"
+          >
+            {content} TL
+          </text>
+        </svg>
+      );
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+    };
+
+    data?.forEach((property) => {
+      const { location } = property.contact;
+      if (location) {
+        const markerFeature = new Feature({
+          geometry: new Point(fromLonLat([location[1], location[0]])),
+        });
+
+        markerFeature.setProperties({ mapLink: property.contact.map_link });
+
+        markerFeature.setStyle(
+          new Style({
+            image: new Icon({
+              src: generateIconSvg(property.products[0].adult_price),
+              scale: 1,
+            }),
+          })
+        );
+
+        markerLayer.getSource()?.addFeature(markerFeature);
+      }
+    });
+
+    // Generalized click handler for all markers
     map.on("click", (evt) => {
       const features = map.getFeaturesAtPixel(evt.pixel);
-      if (features && features.includes(marker)) {
-        const googleMapsUrl = data?.map_link;
-        window.open(googleMapsUrl, "_blank");
+      if (features?.length) {
+        const clickedFeature = features[0];
+        const googleMapsUrl = clickedFeature.get("mapLink");
+        if (googleMapsUrl) window.open(googleMapsUrl, "_blank");
       }
     });
 
     return () => map.setTarget(undefined);
-  }, [contact]);
+  }, [data]);
 
   return <div ref={mapRef} style={containerStyle}></div>;
 };
