@@ -11,14 +11,14 @@ import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
-  const snapPoints = [1 / 2, 1, 1 / 12];
+  const snapPoints = [1 / 12, 1 / 2, 15 / 16];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   return (
     <div>
-      {/* <header className="fixed top-0 left-0 w-full bg-black  z-[51]">
+      <header className="fixed top-0 left-0 w-full bg-black  z-[51]">
         <FilterComponent />
-      </header> */}
+      </header>
       <Drawer
         open={true}
         snapPoints={snapPoints}
