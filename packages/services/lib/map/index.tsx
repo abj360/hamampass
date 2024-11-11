@@ -100,7 +100,7 @@ const MapComponent = ({ data }: MapComponentProps) => {
     map.on("click", (evt) => {
       const features = map.getFeaturesAtPixel(evt.pixel);
       if (features && features.includes(marker)) {
-        const googleMapsUrl = data.map_link;
+        const googleMapsUrl = data?.map_link;
         window.open(googleMapsUrl, "_blank");
       }
     });
