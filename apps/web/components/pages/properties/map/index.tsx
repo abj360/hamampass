@@ -10,7 +10,7 @@ import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
-  const snapPoints = [1 / 12, 1 / 2, 50 / 51];
+  const snapPoints = [1 / 14, 1 / 2, 50 / 51];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
       {snap === 50 / 51 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-lg"
-          onClick={() => setSnap(1 / 12)}
+          onClick={() => setSnap(1 / 14)}
         >
           Map
         </button>
