@@ -9,7 +9,7 @@ import DetailsComponent from "./details";
 import { IoStar } from "react-icons/io5";
 import { GoDotFill } from "react-icons/go";
 import DrawerGeneral from "@/components/commons/drawer";
-import OpenLayersMapComponent from "@/components/pages/single-property/details/location/ol";
+import { MapComponent } from "@hamampass/services";
 import Header from "@/components/commons/new-header";
 import Gender from "../properties/cards/card-item/lib/amenities/gender";
 import Price from "./lib/price";
@@ -61,7 +61,7 @@ const SinglePropertyPage = ({
                   <p className="text-xs">{view("view-map")} </p>
                 </div>
               }
-              content={<OpenLayersMapComponent data={data.contact} />}
+              content={<MapComponent data={data.contact} />}
               handleOnly={true}
               fullWidth={true}
               title={title("location-title")}

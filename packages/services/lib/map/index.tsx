@@ -20,13 +20,11 @@ const containerStyle = {
   height: "100%",
 };
 
-interface OpenLayersMapComponentProps {
+interface MapComponentProps {
   data: TContact;
 }
 
-const OpenLayersMapComponent: React.FC<OpenLayersMapComponentProps> = ({
-  data,
-}) => {
+const MapComponent: React.FC<MapComponentProps> = ({ data }) => {
   const contact = data?.location;
   const mapRef = useRef<HTMLDivElement | null>(null);
 
@@ -113,4 +111,4 @@ const OpenLayersMapComponent: React.FC<OpenLayersMapComponentProps> = ({
   return <div ref={mapRef} style={containerStyle}></div>;
 };
 
-export default OpenLayersMapComponent;
+export { MapComponent };
