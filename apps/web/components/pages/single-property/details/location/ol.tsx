@@ -40,16 +40,18 @@ const OpenLayersMapComponent: React.FC<OpenLayersMapComponentProps> = ({
       target: mapRef.current || undefined,
       layers: [
         new TileLayer({
-          source: new OSM({
-            attributions: [], // Removes the attribution
-          }),
+          source: new OSM(),
         }),
       ],
       view: new View({
         center: center,
         zoom: 13,
       }),
-      controls: defaultControls({ zoom: false }), // Disables the zoom control
+      controls: defaultControls({
+        zoom: false,
+        rotate: false,
+        attribution: false,
+      }),
     });
 
     // Create the marker icon as an SVG string
@@ -83,7 +85,7 @@ const OpenLayersMapComponent: React.FC<OpenLayersMapComponentProps> = ({
       new Style({
         image: new Icon({
           src: iconUrl,
-          scale: 0.75, // Adjust scale as needed
+          scale: 0.75,
         }),
       })
     );
