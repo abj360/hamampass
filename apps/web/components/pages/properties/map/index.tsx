@@ -10,7 +10,7 @@ import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
-  const snapPoints = [1 / 12, 1 / 2, 15 / 16];
+  const snapPoints = [1 / 12, 1 / 2, 50 / 51];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   useEffect(() => {
@@ -30,9 +30,10 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
         modal={false}
         snapToSequentialPoint
       >
-        <DrawerContent className="h-full">
-          <DrawerHeader className="rounded-t-lg flex items-center justify-center h-18">
-            <div className="w-20 h-1 bg-gray-700 mt-6"></div>
+        <DrawerContent className="h-full rounded-t-xl">
+          <DrawerHeader className="rounded-t-lg flex items-center justify-center h-18 flex-col gap-3">
+            <div className="w-14 h-1 bg-gray-400 rounded-xl" />
+            <p className="text-sm">2 hamams found</p>
           </DrawerHeader>
           {children}
         </DrawerContent>
@@ -40,7 +41,7 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
       <div className="h-svh bg-black">
         <GoogleMapComponent />
       </div>
-      {snap === 15 / 16 && (
+      {snap === 50 / 51 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10 text-white px-4 py-1 rounded-lg"
           onClick={() => setSnap(1 / 12)}
