@@ -20,18 +20,18 @@ const containerStyle = {
   height: "100%",
 };
 
-interface MapComponentProps {
+interface PropertiesMapComponentProps {
   data?: TContact;
 }
 
-const MapComponent = ({ data }: MapComponentProps) => {
+const PropertiesMapComponent = ({ data }: PropertiesMapComponentProps) => {
   const contact = data?.location;
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const center = contact
       ? fromLonLat([contact[1], contact[0]])
-      : fromLonLat([43.37828351185324, 38.513499459864306]);
+      : fromLonLat([28.969379, 40.99645]);
 
     // Create the map
     const map = new Map({
@@ -100,7 +100,7 @@ const MapComponent = ({ data }: MapComponentProps) => {
     map.on("click", (evt) => {
       const features = map.getFeaturesAtPixel(evt.pixel);
       if (features && features.includes(marker)) {
-        const googleMapsUrl = data.map_link;
+        const googleMapsUrl = data?.map_link;
         window.open(googleMapsUrl, "_blank");
       }
     });
@@ -111,4 +111,4 @@ const MapComponent = ({ data }: MapComponentProps) => {
   return <div ref={mapRef} style={containerStyle}></div>;
 };
 
-export { MapComponent };
+export { PropertiesMapComponent };

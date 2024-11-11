@@ -8,6 +8,7 @@ import {
 import { useState, useEffect } from "react";
 import FilterComponent from "@/components/pages/properties/filters";
 import GoogleMapComponent from "./map";
+import { PropertiesMapComponent } from "@hamampass/services";
 
 const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
   const snapPoints = [1 / 14, 1 / 2, 50 / 51];
@@ -38,8 +39,8 @@ const MapDrawerComponent = ({ children }: { children?: React.ReactNode }) => {
           {children}
         </DrawerContent>
       </Drawer>
-      <div className="h-svh bg-black">
-        <GoogleMapComponent />
+      <div className="h-svh">
+        <PropertiesMapComponent />
       </div>
       {snap === 50 / 51 && (
         <button
