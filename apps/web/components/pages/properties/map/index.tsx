@@ -94,7 +94,7 @@ const MapDrawerComponent = ({
         </DrawerContent>
       </Drawer>
       <div className="h-svh">
-        <PropertiesMapComponent properties={properties} />
+        <PropertiesMapComponent properties={[properties[0]]} />
       </div>
       {snap === 50 / 51 && (
         <button
