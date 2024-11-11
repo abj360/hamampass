@@ -37,9 +37,7 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
           {children}
         </DrawerContent>
       </Drawer>
-      <div className="h-svh">
-        <GoogleMapComponent />
-      </div>
+      <div className="h-svh bg-black">{/* <GoogleMapComponent /> */}</div>
       {/* <div className=" fixed bottom-0   z-[51] bg-red-600">
         <p className="bg-white border border-black rounded px-3 py-1 ">Map</p>
       </div> */}
