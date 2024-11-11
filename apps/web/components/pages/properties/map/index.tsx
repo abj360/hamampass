@@ -24,6 +24,8 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
         activeSnapPoint={snap}
         setActiveSnapPoint={setSnap}
         modal={false}
+        snapToSequentialPoint
+        fadeFromIndex={1}
       >
         <DrawerContent className="h-full">
           <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-18 bg-">
