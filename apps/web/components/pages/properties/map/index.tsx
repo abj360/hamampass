@@ -13,6 +13,10 @@ import GoogleMapComponent from "./map";
 const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
   const snapPoints = [1 / 2, 1 / 12, 1];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
+
+  const handleSnapClick = () => {
+    setSnap((prevSnap) => (prevSnap === 1 ? 1 / 12 : 1)); // Toggle between full and minimized
+  };
   return (
     <div>
       <header className="fixed top-0 left-0 w-full bg-black  z-[51]">
@@ -25,7 +29,6 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
         setActiveSnapPoint={setSnap}
         modal={false}
         snapToSequentialPoint
-        fadeFromIndex={1}
       >
         <DrawerContent className="h-full">
           <DrawerHeader className=" rounded-t-lg flex items-center justify-center h-18 bg-">
@@ -41,7 +44,7 @@ const MapDrawerComponent = ({ children }: { children: React.ReactNode }) => {
       {snap === 1 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10  text-white px-4 py-1 rounded-lg"
-          onClick={() => setSnap(1 / 12)}
+          onClick={handleSnapClick}
         >
           Map
         </button>
