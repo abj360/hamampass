@@ -14,6 +14,7 @@ const districtData = ["Kadıköy"];
 
 const FilterComponent: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
+  const [bageNumber, setBageNumber] = useState<number>(0);
   const [filteredDistricts, setFilteredDistricts] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const searchParams = useSearchParams();
@@ -51,6 +52,10 @@ const FilterComponent: React.FC = () => {
     } else {
       newParams.delete("district");
     }
+
+    const filteredSearchParams = new URLSearchParams(searchParams.toString());
+    filteredSearchParams.delete("day");
+    setBageNumber(filteredSearchParams.size);
 
     window.history.replaceState(
       null,
@@ -107,9 +112,9 @@ const FilterComponent: React.FC = () => {
           }
         />
 
-        {searchParams.size !== 0 && (
+        {bageNumber !== 0 && (
           <div className="py-0.5 px-[.28rem] text-center min-w-3 text-xs/3 bg-secondary-10 rounded-full text-white aspect-square border absolute -right-1 -top-1">
-            {searchParams.size}
+            {bageNumber}
           </div>
         )}
 
