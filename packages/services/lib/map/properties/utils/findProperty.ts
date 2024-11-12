@@ -9,10 +9,14 @@ export const findProperty = ({
   title: string;
   sex: number;
 }) => {
+  let res;
+
   if (!sex) {
-    return properties.find((property) => property.title === title);
+    res = properties.find((property) => property.title === title);
   }
-  return properties.find(
+  res = properties.find(
     (property) => property.title === title && property.sex == sex
   );
+
+  return res;
 };
