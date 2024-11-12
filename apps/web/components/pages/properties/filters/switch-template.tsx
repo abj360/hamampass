@@ -3,6 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { Separator } from "@hamampass/ui/primitives/separator.tsx";
 import { useSearchParams } from "next/navigation";
+import { url } from "inspector";
 
 // Define prop types for better readability and TypeScript support
 interface ButtonProps {
@@ -23,13 +24,17 @@ const SwitchTemplate = ({ buttons, param, title }: SwitchTemplateProps) => {
 
   const handleButtonClick = (button: ButtonProps) => {
     setActiveButton(button);
-  };
 
-  useEffect(() => {
-    if (activeButton.value !== null) {
-      console.log(param, activeButton.value);
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (button.value !== null) {
+      urlParams.set(param, button.value.toString());
+      window.history.replaceState(null, "", `?${urlParams.toString()}`);
+    } else {
+      urlParams.delete(param);
+      window.history.replaceState(null, "", `?${urlParams.toString()}`);
     }
-  }, [activeButton]);
+  };
 
   const buttonClass = (button: ButtonProps) =>
     `flex-1 text-center p-2 rounded-lg mx-1 ${
