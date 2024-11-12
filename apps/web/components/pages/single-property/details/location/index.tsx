@@ -6,7 +6,7 @@ import { BsCopy } from "react-icons/bs";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useToast } from "@hamampass/ui/primitives/hooks/use-toast.ts";
 import DrawerGeneral from "@/components/commons/drawer";
-import GoogleMapComponent from "@/components/pages/single-property/details/location/map";
+import { MapComponent } from "@hamampass/services";
 
 const LocationComponent = ({ contact }: { contact: TContact }) => {
   const s = useTranslations("single");
@@ -50,11 +50,7 @@ const LocationComponent = ({ contact }: { contact: TContact }) => {
               </p>
             </div>
           }
-          content={
-            <div className="h-full">
-              <GoogleMapComponent contact={contact?.location} />
-            </div>
-          }
+          content={<MapComponent data={contact} />}
           handleOnly={true}
           fullWidth={true}
           title={title("location-title")}

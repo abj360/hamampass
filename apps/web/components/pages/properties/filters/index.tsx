@@ -80,7 +80,7 @@ const FilterComponent: React.FC = () => {
 
   return (
     <div className="sticky top-0 z-20 bg-white py-1">
-      <div className="flex items-center border border-primary-10 rounded-lg mx-4 my-2 gap-1 relative">
+      <div className="flex items-center border border-primary-10 rounded-lg mx-4 my-1 gap-1 relative">
         <IoSearchSharp size={22} className="mb-[.1rem] ml-2" />
         {/* <Input
           type="text"
@@ -101,7 +101,7 @@ const FilterComponent: React.FC = () => {
         />
         <DrawerComponent
           trigger={
-            <p className="py-3 px-5 text-white bg-primary-10 border-primary-10 rounded-r">
+            <p className="py-2 px-5 text-white bg-primary-10 border-primary-10 rounded-r">
               {<VscSettings size={22} />}
             </p>
           }
