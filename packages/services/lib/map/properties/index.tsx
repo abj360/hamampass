@@ -9,15 +9,16 @@ import { CreateMarker } from "./components/marker";
 import { CreateMap } from "./components/mapContainer";
 import { updateMarkerState } from "./handler";
 import { findProperty } from "./utils/findProperty";
+import { set } from "ol/transform";
 
 const PropertiesMapComponent = ({
   properties,
   setSnap,
-  setCoosenProperty,
+  setCoosenProperties,
 }: {
   properties: TProperty[];
   setSnap: (value: number) => void;
-  setCoosenProperty: (value: TProperty | null) => void;
+  setCoosenProperties: (value: TProperty[] | null) => void;
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<any>(null); // To store the map instance
@@ -47,7 +48,7 @@ const PropertiesMapComponent = ({
 
           if (data.isActive) {
             updateMarkerState({ data, marker, state: false });
-            setCoosenProperty(null);
+            setCoosenProperties(null);
             return;
           }
 
@@ -60,7 +61,39 @@ const PropertiesMapComponent = ({
           });
           setSnap(1 / 14);
           {
-            property && setCoosenProperty(property);
+            property && setCoosenProperties([property]);
+          }
+        }
+
+        if (clickedMarkers?.length > 1) {
+          const activeProperties = [] as any;
+
+          clickedMarkers.forEach((marker) => {
+            const data = (marker as Feature).getProperties();
+
+            if (!data.isActive) {
+              updateMarkerState({ data, marker, state: true });
+              const property = findProperty({
+                properties,
+                title: data.title,
+                sex: data.sex,
+              });
+
+              if (property) {
+                activeProperties.push(property);
+              }
+            } else {
+              updateMarkerState({ data, marker, state: false });
+              activeProperties.length = 0;
+            }
+          });
+
+          if (activeProperties.length > 0) {
+            setCoosenProperties(activeProperties);
+            console.log("Multiple properties selected:", activeProperties);
+            setSnap(1 / 14);
+          } else {
+            setCoosenProperties(null);
           }
         }
 
@@ -69,7 +102,7 @@ const PropertiesMapComponent = ({
             const data = marker.getProperties();
             updateMarkerState({ data, marker, state: false });
           });
-          setCoosenProperty(null);
+          setCoosenProperties(null);
         }
       });
     }

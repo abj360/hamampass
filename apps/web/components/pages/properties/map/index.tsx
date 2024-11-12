@@ -22,7 +22,9 @@ const MapDrawerComponent = ({
 }) => {
   const snapPoints = [1 / 14, 1 / 2, 50 / 51];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
-  const [coosenProperty, setCoosenProperty] = useState<TProperty | null>(null);
+  const [coosenProperties, setCoosenProperties] = useState<TProperty[] | null>(
+    null
+  );
 
   useEffect(() => {
     setSnap(snapPoints[1]);
@@ -97,12 +99,14 @@ const MapDrawerComponent = ({
       </Drawer>
       <div className="h-svh">
         <PropertiesMapComponent
-          properties={[properties[0]]}
+          properties={properties}
           setSnap={setSnap}
-          setCoosenProperty={setCoosenProperty}
+          setCoosenProperties={setCoosenProperties}
         />
       </div>
-      {coosenProperty && <ChoosenPropertyCard property={coosenProperty} />}
+      {coosenProperties && (
+        <ChoosenPropertyCard properties={coosenProperties} />
+      )}
       {snap === 50 / 51 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-lg"
