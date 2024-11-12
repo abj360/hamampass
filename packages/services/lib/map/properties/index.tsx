@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef } from "react";
 import Feature from "ol/Feature";
 import VectorLayer from "ol/layer/Vector";
@@ -8,64 +9,82 @@ import { CreateMarker } from "./components/marker";
 import { CreateMap } from "./components/mapContainer";
 import { updateMarkerState } from "./handler";
 import { findProperty } from "./utils/findProperty";
-import { set } from "ol/transform";
 
 const PropertiesMapComponent = ({
   properties,
   setSnap,
 }: {
   properties: TProperty[];
-  setSnap: any;
+  setSnap: (value: number) => void;
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
+  const mapInstanceRef = useRef<any>(null); // To store the map instance
+  const markerLayerRef = useRef<VectorLayer<any> | null>(null); // To store marker layer
 
   useEffect(() => {
-    const map = CreateMap(mapRef);
+    // Initialize the map only once
+    if (!mapInstanceRef.current && mapRef.current) {
+      const map = CreateMap(mapRef);
+      mapInstanceRef.current = map;
 
-    const markerLayer = new VectorLayer({
-      source: new VectorSource(),
-    });
-    map.addLayer(markerLayer);
+      // Create and add the marker layer only once
+      const markerLayer = new VectorLayer({
+        source: new VectorSource(),
+      });
+      map.addLayer(markerLayer);
+      markerLayerRef.current = markerLayer;
 
-    properties?.forEach((property) => {
-      if (!property?.contact) return;
+      // Handle map click events
+      map.on("click", (e) => {
+        const allMarkers = markerLayer.getSource()?.getFeatures();
+        const clickedMarkers = map.getFeaturesAtPixel(e.pixel);
 
-      CreateMarker({ property, markerLayer });
-    });
+        if (clickedMarkers?.length === 1) {
+          const marker = clickedMarkers[0] as Feature;
+          const data = marker.getProperties();
 
-    map.on("click", (e) => {
-      const allMarkers = markerLayer.getSource()?.getFeatures();
-      const clickedMarkers = map.getFeaturesAtPixel(e.pixel);
+          if (data.isActive) {
+            updateMarkerState({ data, marker, state: false });
+            return;
+          }
 
-      if (clickedMarkers?.length === 1) {
-        const marker = clickedMarkers[0] as Feature; // Cast to Feature
-        const data = marker.getProperties();
+          updateMarkerState({ data, marker, state: true });
 
-        if (data.isActive) {
-          updateMarkerState({ data, marker, state: false });
-          return;
+          const property = findProperty({
+            properties,
+            title: data.title,
+            sex: data.sex,
+          });
+          setSnap(1 / 14);
+          console.log("selected property:", property);
         }
 
-        updateMarkerState({ data, marker, state: true });
+        if (!clickedMarkers?.length) {
+          allMarkers?.forEach((marker) => {
+            const data = marker.getProperties();
+            updateMarkerState({ data, marker, state: false });
+          });
+        }
+      });
+    }
 
-        const property = findProperty({
-          properties,
-          title: data.title,
-          sex: data.sex,
-        });
-        setSnap(1 / 14);
-        console.log("selected property:", property);
-      }
-      if (!clickedMarkers?.length) {
-        allMarkers?.forEach((marker) => {
-          const data = marker.getProperties();
-          updateMarkerState({ data, marker, state: false });
-        });
-      }
-    });
+    // Update markers only when properties change
+    if (markerLayerRef.current && properties) {
+      const source = markerLayerRef.current.getSource();
+      const existingMarkers = source.getFeatures();
 
-    return () => map.setTarget(undefined);
-  }, [properties]);
+      // Check if properties have actually changed to avoid unnecessary re-renders
+      if (existingMarkers.length !== properties.length) {
+        source.clear(); // Clear only if there's a change in properties
+
+        properties.forEach((property) => {
+          if (property?.contact) {
+            CreateMarker({ property, markerLayer: markerLayerRef.current! });
+          }
+        });
+      }
+    }
+  }, [properties]); // Only re-run when properties changes, not setSnap
 
   return <div ref={mapRef} style={{ width: "100%", height: "100%" }}></div>;
 };
