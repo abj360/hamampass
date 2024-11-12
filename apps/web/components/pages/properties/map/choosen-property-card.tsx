@@ -3,14 +3,37 @@ import Image from "next/image";
 import Gender from "@/components/pages/properties/cards/card-item/lib/amenities/gender";
 import { IoStar } from "react-icons/io5";
 import HeartComponent from "../cards/card-item/heart";
+import { useRouter, useParams } from "next/navigation";
+import { request } from "@hamampass/services";
+import useTrack from "@/hooks/useTrack";
 
 const ChoosenPropertyCard = ({ property }: { property: TProperty }) => {
   if (!property) return null;
+  const router = useRouter();
+  const { locale } = useParams();
+  const track = useTrack();
 
-  const handleCardClick = () => {
-    console.log("clicked heheh");
+  const handleCardClick = async () => {
+    track({
+      event: "map marker card click",
+    });
+
+    const convertedTitle = encodeURIComponent(
+      property.title.replace(/ /g, "-")
+    );
+
+    const req = await request({
+      type: "get",
+      endpoint: `admin/${property?.id}`,
+    });
+
+    if (req.data) {
+      router.push(`/${locale}/${property.sex}${convertedTitle}`);
+      return;
+    }
+
+    router.push(`/${locale}/${convertedTitle}`);
   };
-
   return (
     <button
       onClick={handleCardClick}

@@ -99,9 +99,10 @@ const MapDrawerComponent = ({
         <PropertiesMapComponent
           properties={[properties[0]]}
           setSnap={setSnap}
+          setCoosenProperty={setCoosenProperty}
         />
       </div>
-      <ChoosenPropertyCard property={properties[0]} />
+      {coosenProperty && <ChoosenPropertyCard property={coosenProperty} />}
       {snap === 50 / 51 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-lg"

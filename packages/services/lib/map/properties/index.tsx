@@ -13,9 +13,11 @@ import { findProperty } from "./utils/findProperty";
 const PropertiesMapComponent = ({
   properties,
   setSnap,
+  setCoosenProperty,
 }: {
   properties: TProperty[];
   setSnap: (value: number) => void;
+  setCoosenProperty: (value: TProperty | null) => void;
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<any>(null); // To store the map instance
@@ -56,7 +58,9 @@ const PropertiesMapComponent = ({
             sex: data.sex,
           });
           setSnap(1 / 14);
-          console.log("selected property:", property);
+          {
+            property && setCoosenProperty(property);
+          }
         }
 
         if (!clickedMarkers?.length) {
@@ -64,6 +68,7 @@ const PropertiesMapComponent = ({
             const data = marker.getProperties();
             updateMarkerState({ data, marker, state: false });
           });
+          setCoosenProperty(null);
         }
       });
     }
