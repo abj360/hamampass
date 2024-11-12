@@ -47,6 +47,7 @@ const PropertiesMapComponent = ({
 
           if (data.isActive) {
             updateMarkerState({ data, marker, state: false });
+            setCoosenProperty(null);
             return;
           }
 
