@@ -3,7 +3,7 @@
 import SwitchTemplate from "../switch-template";
 
 const buttons = [
-  { name: "Any Type", value: null },
+  { name: "Any", value: null },
   { name: "Public", value: 1 },
   { name: "Private", value: 0 },
 ];

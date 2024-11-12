@@ -1,38 +1,16 @@
 "use client";
 
-import CheckboxComponent from "@/components/pages/properties/filters/checkbox";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@hamampass/ui/primitives/accordion.tsx";
-import { useTranslations } from "@hamampass/i18n";
+import SwitchTemplate from "../switch-template";
 
-const sexData = [0, 1, 2];
+const buttons = [
+  { name: "Any", value: null },
+  { name: "Women", value: 0 },
+  { name: "Men ", value: 1 },
+  { name: "Unisex", value: 2 },
+];
 
-const SexComponent = () => {
-  const sex_type = useTranslations("home.filters.sex");
-  const title = useTranslations("titles");
-  return (
-    <Accordion type="single" collapsible>
-      <AccordionItem value="vibe">
-        <AccordionTrigger className="text-lg font-bold">
-          {title("sex_title")}
-        </AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-2">
-          {sexData.map((id) => (
-            <CheckboxComponent
-              key={id}
-              id={id}
-              name={sex_type(id.toString())}
-              paramName="sex"
-            />
-          ))}
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  );
+const SpaceComponent = () => {
+  return <SwitchTemplate buttons={buttons} param="sex" title="Gender" />;
 };
 
-export default SexComponent;
+export default SpaceComponent;
