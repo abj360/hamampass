@@ -77,10 +77,10 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
         <div className="px-5 overflow-y-auto">
           <SortComponent />
           <PaymentMethodComponent />
-          <RangeComponent />
-          <SexComponent />
-          <AmenityComponent />
           <SpaceComponent />
+          <SexComponent />
+          <RangeComponent />
+          <AmenityComponent />
         </div>
         <DrawerFooter>
           <DrawerClose>
