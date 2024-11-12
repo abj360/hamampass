@@ -8,7 +8,6 @@ import { request } from "@hamampass/services";
 import useTrack from "@/hooks/useTrack";
 
 const ChoosenPropertyCard = ({ property }: { property: TProperty }) => {
-  if (!property) return null;
   const router = useRouter();
   const { locale } = useParams();
   const track = useTrack();
@@ -34,6 +33,8 @@ const ChoosenPropertyCard = ({ property }: { property: TProperty }) => {
 
     router.push(`/${locale}/${convertedTitle}`);
   };
+
+  if (!property) return null;
   return (
     <button
       onClick={handleCardClick}
