@@ -105,9 +105,9 @@ const Chart = () => {
 
   return (
     <div>
-      <ChartContainer config={chartConfig} className="min-w-[50vw]">
+      <ChartContainer config={chartConfig} className="min-w-[50vw] max-h-24">
         <BarChart data={chartData}>
-          <Bar dataKey="property" barSize={10}>
+          <Bar dataKey="property" barSize={5}>
             {chartData.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={getColor(entry.price)} />
             ))}
