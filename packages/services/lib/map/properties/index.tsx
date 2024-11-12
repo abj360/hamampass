@@ -7,11 +7,15 @@ import { TProperty } from "@hamampass/db/types";
 import { CreateMarker } from "./components/marker";
 import { CreateMap } from "./components/mapContainer";
 import { updateMarkerState } from "./handler";
+import { findProperty } from "./utils/findProperty";
+import { set } from "ol/transform";
 
 const PropertiesMapComponent = ({
   properties,
+  setSnap,
 }: {
   properties: TProperty[];
+  setSnap: any;
 }) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
@@ -30,9 +34,11 @@ const PropertiesMapComponent = ({
     });
 
     map.on("click", (e) => {
-      const markers = map.getFeaturesAtPixel(e.pixel);
-      if (markers?.length === 1) {
-        const marker = markers[0] as Feature; // Cast to Feature
+      const allMarkers = markerLayer.getSource()?.getFeatures();
+      const clickedMarkers = map.getFeaturesAtPixel(e.pixel);
+
+      if (clickedMarkers?.length === 1) {
+        const marker = clickedMarkers[0] as Feature; // Cast to Feature
         const data = marker.getProperties();
 
         if (data.isActive) {
@@ -42,12 +48,15 @@ const PropertiesMapComponent = ({
 
         updateMarkerState({ data, marker, state: true });
 
-        console.log("marker data:", data);
+        const property = findProperty({
+          properties,
+          title: data.title,
+          sex: data.sex,
+        });
+        setSnap(1 / 14);
+        console.log("selected property:", property);
       }
-      if (!markers?.length) {
-        console.log("you clicked empty space");
-
-        const allMarkers = markerLayer.getSource()?.getFeatures();
+      if (!clickedMarkers?.length) {
         allMarkers?.forEach((marker) => {
           const data = marker.getProperties();
           updateMarkerState({ data, marker, state: false });
