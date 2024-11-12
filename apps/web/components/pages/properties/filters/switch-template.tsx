@@ -3,7 +3,7 @@
 import { useState, useEffect, use } from "react";
 import { Separator } from "@hamampass/ui/primitives/separator.tsx";
 import { useSearchParams } from "next/navigation";
-import { url } from "inspector";
+import getDayIndexFromSession from "@/utils/getDayIndextFromSession";
 
 // Define prop types for better readability and TypeScript support
 interface ButtonProps {
@@ -15,9 +15,15 @@ interface SwitchTemplateProps {
   buttons: ButtonProps[];
   param: string;
   title: string;
+  isSex?: boolean;
 }
 
-const SwitchTemplate = ({ buttons, param, title }: SwitchTemplateProps) => {
+const SwitchTemplate = ({
+  buttons,
+  param,
+  title,
+  isSex,
+}: SwitchTemplateProps) => {
   const searchParams = useSearchParams();
 
   const [activeButton, setActiveButton] = useState<ButtonProps>(buttons[0]);
@@ -29,9 +35,12 @@ const SwitchTemplate = ({ buttons, param, title }: SwitchTemplateProps) => {
 
     if (button.value !== null) {
       urlParams.set(param, button.value.toString());
+      isSex && urlParams.set("day", getDayIndexFromSession()?.toString());
+
       window.history.replaceState(null, "", `?${urlParams.toString()}`);
     } else {
       urlParams.delete(param);
+      isSex && urlParams.delete("day");
       window.history.replaceState(null, "", `?${urlParams.toString()}`);
     }
   };

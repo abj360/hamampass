@@ -10,7 +10,9 @@ const buttons = [
 ];
 
 const SpaceComponent = () => {
-  return <SwitchTemplate buttons={buttons} param="sex" title="Gender" />;
+  return (
+    <SwitchTemplate buttons={buttons} param="sex" title="Gender" isSex={true} />
+  );
 };
 
 export default SpaceComponent;
