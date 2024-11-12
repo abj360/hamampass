@@ -45,7 +45,7 @@ const ChoosenPropertyCard = ({ properties }: { properties: TProperty[] }) => {
         <button
           key={property.id}
           onClick={() => handleCardClick(property)}
-          className="shadow-lg flex rounded-lg overflow-hidden w-full"
+          className="shadow-lg flex rounded-lg overflow-hidden w-full relative"
         >
           <Image
             src={property.photos[0]}

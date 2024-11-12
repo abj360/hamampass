@@ -45,18 +45,18 @@ const HeartComponent = ({
         );
         setIsWishlist(true);
         toast({
-          title: "Review submitted",
+          title: "Added to Favorites",
           className: "text-white bg-green-700 px-1 py-2",
-          duration: 500,
+          duration: 1000,
         });
       }
     } else {
       localStorage.setItem("wishlist", JSON.stringify([property]));
       setIsWishlist(true);
       toast({
-        title: "Review submitted",
+        title: "Added to Favorites",
         className: "text-white bg-green-700 px-1 py-2",
-        duration: 500,
+        duration: 1000,
       });
     }
   };
