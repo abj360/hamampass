@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import { TProperty } from "@hamampass/db/types";
 import { toast } from "@hamampass/ui/primitives/hooks/use-toast.ts";
 import useTrack from "@/hooks/useTrack";
-const HeartComponent = ({ property }: { property: TProperty }) => {
+const HeartComponent = ({
+  property,
+  isSmall = false,
+}: {
+  property: TProperty;
+  isSmall?: boolean;
+}) => {
   const [isWishlist, setIsWishlist] = useState(false);
   const track = useTrack();
 
@@ -55,7 +61,7 @@ const HeartComponent = ({ property }: { property: TProperty }) => {
     }
   };
 
-  const cn = `w-6 h-6 ${isWishlist ? "text-red-600/90" : "text-black/30 "}`;
+  const cn = `  ${isSmall ? "w-4 h-4" : "w-6 h-6"}  ${isWishlist ? "text-red-600/90" : "text-black/30 "}`;
   return (
     <div className="p-3 bg-white absolute top-0 right-0 rounded-tr-md rounded-bl-3xl z-10">
       <FaHeart onClick={handleWishlistClick} className={cn} />

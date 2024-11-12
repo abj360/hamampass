@@ -13,6 +13,7 @@ import { TProperty } from "@hamampass/db/types";
 import { useFetchProperties } from "@/hooks/useFetchProperties";
 import { useSelector } from "react-redux";
 import { request } from "@hamampass/services";
+import ChoosenPropertyCard from "./choosen-property-card";
 
 const MapDrawerComponent = ({
   serverProperties,
@@ -21,6 +22,7 @@ const MapDrawerComponent = ({
 }) => {
   const snapPoints = [1 / 14, 1 / 2, 50 / 51];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
+  const [coosenProperty, setCoosenProperty] = useState<TProperty | null>(null);
 
   useEffect(() => {
     setSnap(snapPoints[1]);
@@ -99,6 +101,7 @@ const MapDrawerComponent = ({
           setSnap={setSnap}
         />
       </div>
+      <ChoosenPropertyCard property={properties[0]} />
       {snap === 50 / 51 && (
         <button
           className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-lg"
