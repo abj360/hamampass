@@ -40,17 +40,16 @@ const ChoosenPropertyCard = ({ property }: { property: TProperty }) => {
   return (
     <button
       onClick={handleCardClick}
-      className="shadow-lg z-10 absolute bottom-14 inset-x-1 flex rounded-lg overflow-hidden bg-white"
+      className="shadow-lg z-10 absolute bottom-14 inset-x-1 flex rounded-lg overflow-hidden"
     >
       <Image
         src={property.photos[0]}
         alt={property.title}
         width={144}
         height={81}
-        className="object-cover "
       />
 
-      <div className="flex-1 p-1">
+      <div className="flex-1 py-1 px-2 bg-white">
         <h3 className="  text-left  font-semibold">{property.title}</h3>
         <HeartComponent property={property} isSmall={true} />
         <Gender property={property} isSmall={true} />
