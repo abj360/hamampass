@@ -83,6 +83,7 @@ const SwitchTemplate = ({
           </div>
         ))}
       </div>
+      <Separator orientation="horizontal" className="text-gray-900 mt-4" />
     </div>
   );
 };

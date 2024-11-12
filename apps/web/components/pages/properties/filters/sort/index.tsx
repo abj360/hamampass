@@ -64,10 +64,10 @@ const SortComponent = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="sort">
-        <AccordionTrigger className="text-lg font-bold">
+        <AccordionTrigger className="font-semibold">
           {title("sort_title")}
         </AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-2">
+        <AccordionContent className="flex flex-col gap-2 mt-3">
           <Item
             label={price("expensive")}
             checked={priceValue === "expensive"}
