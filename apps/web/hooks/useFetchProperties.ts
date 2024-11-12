@@ -22,6 +22,7 @@ const useFetchProperties = () => {
             vibe: fParam("vibe"),
             amenity: fParam("amenity"),
             sex: fParam("sex"),
+            day: fParam("day"),
             pay: fParam("pay"),
             range: fParam("range"),
             review: fParam("review"),
