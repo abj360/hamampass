@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { Separator } from "@hamampass/ui/primitives/separator.tsx";
+import { useSearchParams } from "next/navigation";
 
 // Define prop types for better readability and TypeScript support
 interface ButtonProps {
@@ -16,6 +17,8 @@ interface SwitchTemplateProps {
 }
 
 const SwitchTemplate = ({ buttons, param, title }: SwitchTemplateProps) => {
+  const searchParams = useSearchParams();
+
   const [activeButton, setActiveButton] = useState<ButtonProps>(buttons[0]);
 
   const handleButtonClick = (button: ButtonProps) => {
@@ -34,6 +37,18 @@ const SwitchTemplate = ({ buttons, param, title }: SwitchTemplateProps) => {
         ? "border border-black "
         : "border-transparent"
     }`;
+
+  useEffect(() => {
+    const paramValue = searchParams.get(param);
+
+    paramValue
+      ? setActiveButton(
+          buttons.find((button) => button.value === +paramValue) || buttons[0]
+        )
+      : setActiveButton(
+          buttons.find((button) => button.value == null) || buttons[0]
+        );
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col my-4 gap-2">
