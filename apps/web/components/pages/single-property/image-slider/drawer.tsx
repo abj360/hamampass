@@ -46,14 +46,20 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
                     className="object-cover w-full h-full touch-auto overflow-auto"
                   />
                 </DialogTrigger>
-                <DialogContent className="p-0 border-none overflow-hidden touch-none transform transition-all duration-300 ease-in-out hover:scale-110">
-                  <Image
-                    src={photo}
-                    width={1600}
-                    height={900}
-                    alt="photo"
-                    className="object-cover w-full h-full"
-                  />
+                <DialogContent
+                  className="p-0 border-none overflow-hidden touch-none transform transition-all duration-300 ease-in-out 
+                          sm:touch-pan-x sm:touch-pan-y sm:overflow-auto"
+                >
+                  {/* Zoomable Image on Mobile */}
+                  <div className="w-full h-full overflow-hidden touch-pan-x touch-pan-y">
+                    <Image
+                      src={photo}
+                      width={1600}
+                      height={900}
+                      alt="photo"
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                 </DialogContent>
               </Dialog>
             </div>
