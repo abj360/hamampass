@@ -33,6 +33,11 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
     setSelectedImage(null);
   };
 
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent closing the drawer when clicking on the overlay
+    closeImageModal(); // Close the zoom modal
+  };
+
   return (
     <Drawer>
       <DrawerTrigger className="w-full">{trigger}</DrawerTrigger>
@@ -46,44 +51,20 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
         <div className="flex-1 px-4 flex flex-col gap-3 pb-6 overflow-y-auto">
           {data.map((photo) => (
             <div key={photo} className="relative w-full h-96 cursor-pointer">
-              <Image
-                src={photo}
-                width={1600}
-                height={900}
-                alt="photo"
-                className="object-cover w-full h-full"
-                onClick={() => openImageModal(photo)}
-              />
+              <Zoom>
+                <Image
+                  src={photo}
+                  width={1600}
+                  height={900}
+                  alt="photo"
+                  className="object-cover w-full h-full"
+                  onClick={() => openImageModal(photo)}
+                />
+              </Zoom>
             </div>
           ))}
         </div>
       </DrawerContent>
-
-      {/* Fullscreen Image Modal with Zoom */}
-      {selectedImage && (
-        <div
-          className="absolute top-0 w-full h-screen bg-black/80 flex justify-center items-center z-[999] pointer-events-auto"
-          onClick={closeImageModal} // Close modal when clicking the overlay
-        >
-          <Zoom>
-            <Image
-              src={selectedImage}
-              width={1600}
-              height={900}
-              alt="Full view"
-              className="max-w-full max-h-screen object-contain"
-              onClick={(e) => e.stopPropagation()} // Prevent event from propagating to overlay
-            />
-          </Zoom>
-          <button
-            onClick={closeImageModal}
-            className="absolute top-4 right-4 text-white text-2xl"
-            aria-label="Close full-screen view"
-          >
-            &times;
-          </button>
-        </div>
-      )}
     </Drawer>
   );
 };
