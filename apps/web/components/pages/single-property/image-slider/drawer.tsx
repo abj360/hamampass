@@ -62,8 +62,8 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
       {/* Fullscreen Image Modal with Zoom */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-[51]"
-          onClick={closeImageModal}
+          className="absolute top-0 w-full h-screen bg-black/80 flex justify-center items-center z-[999] pointer-events-auto"
+          onClick={closeImageModal} // Close modal when clicking the overlay
         >
           <Zoom>
             <Image
@@ -72,6 +72,7 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
               height={900}
               alt="Full view"
               className="max-w-full max-h-screen object-contain"
+              onClick={(e) => e.stopPropagation()} // Prevent event from propagating to overlay
             />
           </Zoom>
           <button
