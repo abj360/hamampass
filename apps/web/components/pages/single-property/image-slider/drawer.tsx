@@ -28,7 +28,7 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
   const [scale, setScale] = useState(1); // Scale for zoom
 
   // Handle mouse wheel zoom
-  const handleWheel = (e) => {
+  const handleWheel = (e: any) => {
     e.preventDefault();
     let newScale = scale + e.deltaY * -0.01;
     newScale = Math.min(Math.max(1, newScale), 3); // Limit scale between 1x and 3x
@@ -36,7 +36,7 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
   };
 
   // Handle pinch zoom
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: any) => {
     if (e.touches.length === 2) {
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
