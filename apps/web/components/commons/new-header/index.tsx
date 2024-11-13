@@ -15,36 +15,14 @@ interface HeaderProps {
 const Header = ({ variant = "default", title }: HeaderProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItemCount, setCartItemCount] = useState(0);
 
   const handleLogo = () => {
-    !title ? router.push(`/`) : window.scrollTo({ top: 0, behavior: "smooth" });
+    router.push(`/`);
   };
 
   const handleBack = () => {
     router.back();
   };
-
-  useEffect(() => {
-    const handleCartUpdated = () => {
-      setCartItemCount(
-        Object.values(
-          JSON.parse(localStorage.getItem("cart") || "{}")?.products || {}
-        ).reduce((acc: number, item: any) => acc + item.count, 0)
-      );
-    };
-
-    // Initial load
-    handleCartUpdated();
-
-    // Add event listener
-    window.addEventListener("cartUpdated", handleCartUpdated);
-
-    // Cleanup event listener on component unmount
-    return () => {
-      window.removeEventListener("cartUpdated", handleCartUpdated);
-    };
-  }, []);
 
   // Determine styles and logo based on the variant
   const isSticky = variant === "sticky";
