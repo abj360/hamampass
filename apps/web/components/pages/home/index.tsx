@@ -7,6 +7,7 @@ import CardSection from "./card";
 import StickyHeader from "./sticky-header";
 import { useSearchParams } from "next/navigation";
 import useTrack from "@/hooks/useTrack";
+import StickyFooter from "@/components/commons/footer/sticky";
 
 const HomePage = ({ locale }: { locale: string }) => {
   const [isStickyVisible, setIsStickyVisible] = useState(false);
@@ -49,6 +50,7 @@ const HomePage = ({ locale }: { locale: string }) => {
       <BannerSection>
         <CardSection />
       </BannerSection>
+      <StickyFooter />
     </div>
   );
 };

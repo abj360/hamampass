@@ -37,7 +37,7 @@ const DrawerComponent = ({ trigger, property, data }: DrawerComponentProps) => {
   const t = useTranslations("home.product-type");
   const p = useTranslations("single.products");
   const { locale } = useParams();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   //practicioner
   const [selectedPracticioner, setSelectedPracticioner] = useState<
     string | null
@@ -171,6 +171,10 @@ const DrawerComponent = ({ trigger, property, data }: DrawerComponentProps) => {
               </p>
             </div>
           ) : null} */}
+          </div>
+
+          <div className="border border-secondary-10 bg-secondary-10/20 rounded-lg flex items-center justify-center text-secondary-700  mt-2">
+            Towels are included
           </div>
 
           <Practicioner

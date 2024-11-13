@@ -14,6 +14,7 @@ import { useFetchProperties } from "@/hooks/useFetchProperties";
 import { useSelector } from "react-redux";
 import { request } from "@hamampass/services";
 import ChoosenPropertyCard from "./choosen-property-card";
+import StickyFooter from "@/components/commons/footer/sticky";
 
 const MapDrawerComponent = ({
   serverProperties,
@@ -76,6 +77,12 @@ const MapDrawerComponent = ({
       <header className="fixed top-0 left-0 w-full bg-black z-[51]">
         <FilterComponent />
       </header>
+
+      {snap !== 1 / 14 && (
+        <div className="fixed bottom-0 left-0 w-full bg-black z-[51]">
+          <StickyFooter />
+        </div>
+      )}
       <Drawer
         open={true}
         snapPoints={snapPoints}
@@ -84,7 +91,7 @@ const MapDrawerComponent = ({
         modal={false}
         snapToSequentialPoint
       >
-        <DrawerContent className="h-full rounded-t-xl">
+        <DrawerContent className="h-full rounded-t-xl pb-16">
           <DrawerHeader className="rounded-t-lg flex items-center justify-center h-18 flex-col gap-3">
             <div className="w-14 h-1 bg-gray-400 rounded-xl" />
             <p className="text-sm">2 hamams found</p>
@@ -109,7 +116,7 @@ const MapDrawerComponent = ({
       )}
       {snap === 50 / 51 && (
         <button
-          className="fixed bottom-11 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-lg"
+          className="fixed bottom-16 left-1/2 transform -translate-x-1/2 z-[51] text-lg bg-primary-10/90 text-white px-4 py-1 rounded-3xl shadow"
           onClick={() => setSnap(1 / 14)}
         >
           Map

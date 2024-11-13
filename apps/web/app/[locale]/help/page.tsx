@@ -4,7 +4,7 @@ import Header from "@/components/commons/new-header";
 const Help = () => {
   return (
     <main className="min-h-screen">
-      <Header variant="white" title="Help" />
+      <Header variant="white" isHambuger={true} />
       <HelpPage />
     </main>
   );

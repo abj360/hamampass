@@ -42,7 +42,7 @@ const SinglePropertyPage = ({
 
   return (
     <div className="mb-6">
-      <Header variant="white" title={decode_title} />
+      <Header variant="white" isHambuger={true} />
       <Slider data={data} />
 
       {/* {data && <BookButton property={data} />} */}

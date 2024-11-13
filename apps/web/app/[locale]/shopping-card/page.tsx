@@ -4,7 +4,7 @@ import ShoppingCardPage from "@/components/pages/shopping-card";
 const ShoppingCard = async () => {
   return (
     <main className="h-full flex flex-col">
-      <Header variant="white" title="Shoping Cart" />
+      <Header variant="white" isHambuger={true} />
       <ShoppingCardPage />
     </main>
   );

@@ -182,6 +182,7 @@ const FormComponent = () => {
                     <SelectContent>
                       <SelectItem value="0">Female</SelectItem>
                       <SelectItem value="1">Male</SelectItem>
+                      <SelectItem value="3">Other</SelectItem>
                     </SelectContent>
                   </Select>
                 </FormControl>
