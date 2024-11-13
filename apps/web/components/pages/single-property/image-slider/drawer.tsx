@@ -49,13 +49,13 @@ const GaleryDrawer: React.FC<GaleryDrawerProps> = ({ trigger, data }) => {
                     className="object-cover w-full h-full touch-auto overflow-auto"
                   />
                 </DialogTrigger>
-                <DialogContent className="p-0 border-none overflow-hidden touch-auto ">
+                <DialogContent className="p-0 border-none overflow-hidden touch-none">
                   <Image
                     src={photo}
                     width={1600}
                     height={900}
                     alt="photo"
-                    className="object-cover w-full h-full touch-auto"
+                    className="object-cover w-full h-full "
                   />
                 </DialogContent>
               </Dialog>
