@@ -4,7 +4,7 @@ const getDayIndexFromSession = () => {
     ?.split("T")[0]
     .replace(/"/g, "");
 
-  return session ? new Date(session).getDay() : null;
+  return session ? new Date(session).getDay() : new Date().getDay();
 };
 
 export default getDayIndexFromSession;

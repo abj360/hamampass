@@ -1,5 +1,4 @@
 import { TProduct, TProperty } from "@hamampass/db/types";
-import { is } from "date-fns/locale";
 
 const filterByAmenity =
   (amenity: string | null) =>
@@ -30,12 +29,20 @@ const filterByRange =
           );
         })
       : properties;
+
 const filterBySex =
-  (sex: string | null) =>
-  (properties: TProperty[]): TProperty[] =>
-    sex
-      ? properties.filter((property) => JSON.parse(sex).includes(property.sex))
-      : properties;
+  ({ sex, day }: { sex: string | null; day: string | null }) =>
+  (properties: TProperty[]): TProperty[] => {
+    if (sex && day) {
+      return properties.filter((property) => {
+        const choosenDay = property.days.find((d) => d.dayIndex === +day);
+        return choosenDay ? choosenDay.sex === +sex : false;
+      });
+    }
+
+    return properties;
+  };
+
 const filterByKeys =
   (filters: Record<string, string | string[]>) =>
   (properties: TProperty[]): TProperty[] =>

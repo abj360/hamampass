@@ -63,30 +63,29 @@ const DrawerComponent = ({ trigger }: DrawerComponentProps) => {
       </DrawerTrigger>
       <DrawerContent className="h-full z-[52]">
         <DrawerHeader className="flex items-center   ">
-          <DrawerClose className="absolute top-2">
-            <IoClose size={28} />
+          <DrawerClose className="absolute top-3">
+            <IoClose size={18} />
           </DrawerClose>
           <DrawerTitle className="text-md text-center w-full">
             {title("title")}
           </DrawerTitle>
-          <Button onClick={handleClear} variant="clear">
-            {btn("clear")}
-          </Button>
         </DrawerHeader>
         <hr />
         <div className="px-5 overflow-y-auto">
           <SortComponent />
           <PaymentMethodComponent />
-          <RangeComponent />
-          <SexComponent />
-          <AmenityComponent />
           <SpaceComponent />
+          <SexComponent />
+          <RangeComponent />
+          <AmenityComponent />
         </div>
-        <DrawerFooter>
-          <DrawerClose>
-            <p className="bg-primary-10 mx-4 py-2 my-1 rounded-md text-white">
-              {properties && properties.all_items} {btn("show")}
-            </p>
+        <DrawerFooter className="flex flex-row items-center justify-between shadow-lg py-1 ">
+          <Button onClick={handleClear} className="flex-1" variant="link">
+            {btn("clear")}
+          </Button>
+
+          <DrawerClose className="bg-primary-10 rounded-md text-white py-2 flex-1">
+            {properties && properties.all_items} {btn("show")}
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
