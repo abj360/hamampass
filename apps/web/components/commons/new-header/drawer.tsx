@@ -27,15 +27,17 @@ const HamburgerDrawerComponent = ({
 
   return (
     <div className="relative z-30">
-      <button
-        onClick={handleToggle}
-        className="text-sm z-40 relative"
-        aria-controls="drawer-content"
-        aria-expanded={isOpen}
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        {trigger}
-      </button>
+      {!isOpen && (
+        <button
+          onClick={handleToggle}
+          className="text-sm z-40 relative"
+          aria-controls="drawer-content"
+          aria-expanded={isOpen}
+          aria-label="Open menu"
+        >
+          {trigger}
+        </button>
+      )}
 
       <div
         ref={drawerRef}
@@ -47,7 +49,7 @@ const HamburgerDrawerComponent = ({
           isOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="p-4 pt-40">
+        <div className="p-4 h-[90vh]">
           <HamburgerContent cartItemCount={cartItemCount} setOpen={setIsOpen} />
         </div>
       </div>
