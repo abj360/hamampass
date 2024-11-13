@@ -193,7 +193,8 @@
 
       "gender": {
         "0": "Female",
-        "1": "Male"
+        "1": "Male",
+        "2": "Other"
       },
       "type": {
         "0": "Solo",

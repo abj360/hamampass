@@ -186,7 +186,8 @@
       },
       "gender": {
         "0": "Kadın",
-        "1": "Erkek"
+        "1": "Erkek",
+        "2": "Diğer"
       },
       "type": {
         "0": "yalnız",
