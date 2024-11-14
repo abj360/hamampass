@@ -10,7 +10,13 @@ import { useTranslations } from "@hamampass/i18n";
 import { useSession } from "next-auth/react";
 import { request } from "@hamampass/services";
 import { toast } from "@hamampass/ui/primitives/hooks/use-toast.ts";
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+} from "@hamampass/ui/primitives/dialog.tsx";
+import { signIn } from "next-auth/react";
 
 interface TStorage {
   property: {
@@ -32,6 +38,7 @@ const ShoppingCardPage = () => {
   const { products } = storage;
   const t = useTranslations("single.review.drawer.package");
   const shop = useTranslations("shopping-cart");
+  const [isLogin, setIsLogin] = useState(false);
 
   const { locale } = useParams();
   const router = useRouter();
@@ -70,10 +77,11 @@ const ShoppingCardPage = () => {
 
   const handleCheckOut = async () => {
     if (!data?.user?.id) {
+      setIsLogin(true);
       return toast({
         title: "Log in",
         description: "You need to log in to make a booking",
-        duration: 500,
+        duration: 1000,
       });
     }
 
@@ -110,6 +118,10 @@ const ShoppingCardPage = () => {
     });
   };
 
+  const handleLoginClick = async () => {
+    await signIn("google", { callbackUrl: `/${locale}/auth/signIn` });
+  };
+
   return (
     <div className="pt-4 h-full flex flex-col  ">
       <div className="mx-4">
@@ -124,6 +136,7 @@ const ShoppingCardPage = () => {
             {shop("back")} {property.title}
           </span>
         </Button>
+
         <div className="flex items-center justify-between ">
           <div>
             <h1 className="text-sm text-primary-10 font-semibold">
@@ -175,6 +188,17 @@ const ShoppingCardPage = () => {
           )}
         </div>
       </div>
+
+      <Dialog open={isLogin}>
+        <DialogContent
+          onClick={() => setIsLogin(false)}
+          className="border-none flex items-center justify-center w-full h-full bg-black/20"
+        >
+          <DialogHeader className="bg-white px-6 py-3 rounded-xl">
+            <button onClick={handleLoginClick}>Login</button>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
 
       <div className=" mt-auto w-full px-4 pb-4 border-t border-sgray-100 flex flex-col items-center">
         <div className="flex items-center justify-between w-full my-3 text-primary-10">
