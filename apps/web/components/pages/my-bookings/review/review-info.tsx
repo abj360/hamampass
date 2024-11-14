@@ -32,6 +32,7 @@ const Star5Component = ({
 const ReviewInfo = ({ booking }: { booking: TBooking }) => {
   const gender = useTranslations("single.review.gender");
   const info = useTranslations("my-bookings.review.info");
+  if (!booking.review) return null;
   return (
     <div className="flex-col flex mb-6">
       <Separator className="mt-2 mb-6 " />

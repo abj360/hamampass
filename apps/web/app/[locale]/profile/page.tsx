@@ -4,7 +4,7 @@ import Header from "@/components/commons/new-header";
 const Profile = async () => {
   return (
     <main>
-      <Header variant="white" title="Profile" />
+      <Header variant="white" isHambuger={true} />
       <ProfilePageComponent />
     </main>
   );

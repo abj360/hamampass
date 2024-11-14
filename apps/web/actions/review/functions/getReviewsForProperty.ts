@@ -25,6 +25,7 @@ const getReviewsForProperty = async (req: NextRequest) => {
           user: true,
         },
       },
+      rate_details: true,
     },
   });
 

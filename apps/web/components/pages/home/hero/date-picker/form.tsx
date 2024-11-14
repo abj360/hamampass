@@ -32,6 +32,7 @@ import "moment/locale/en-gb"; // Import English locale for moment
 import { useTranslations } from "@hamampass/i18n";
 import { tr, enUS } from "date-fns/locale";
 import { FaCalendarAlt } from "react-icons/fa";
+import useTrack from "@/hooks/useTrack";
 
 const FormSchema = z.object({
   date: z.date({
@@ -45,6 +46,8 @@ export function DateForm({ isSticky = false }) {
   const [open, setOpen] = useState(false);
   const [calendarLocale, setCalendarLocale] = useState(enUS); // Default to Turkish
   const t = useTranslations("home");
+
+  const track = useTrack();
 
   useEffect(() => {
     // Update locales based on the current locale parameter
@@ -67,7 +70,12 @@ export function DateForm({ isSticky = false }) {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     router.push(`/${locale}/properties`);
     sessionStorage.setItem("selected-date", JSON.stringify(data.date));
+    track({ event: "Search Click" });
   }
+
+  const handleDateInputclick = () => {
+    track({ event: "Date Input Click" });
+  };
 
   return (
     <Form {...form}>
@@ -79,7 +87,10 @@ export function DateForm({ isSticky = false }) {
           control={form.control}
           name="date"
           render={({ field }) => (
-            <FormItem className="flex flex-col flex-1">
+            <FormItem
+              onClick={handleDateInputclick}
+              className="flex flex-col flex-1"
+            >
               <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                   <FormControl>

@@ -1,5 +1,4 @@
 import { useParams, useRouter } from "next/navigation";
-import { useTranslations } from "@hamampass/i18n";
 import Image from "next/image";
 import { TProperty } from "@hamampass/db/types";
 import { photos } from "@/mock/photos";
@@ -13,6 +12,9 @@ import {
 } from "@hamampass/ui/primitives/carousel.tsx";
 import { MdLocationOn } from "react-icons/md";
 import Gender from "./gender";
+import { request } from "@hamampass/services";
+import useDay from "@/hooks/useDay";
+import useTrack from "@/hooks/useTrack";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
@@ -20,11 +22,27 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const [sortedProducts, setSortedProducts] = useState(property.products);
   const [activeSlide, setActiveSlide] = useState(0);
   const router = useRouter();
+  const track = useTrack();
 
-  const handleCardClick = () => {
+  const handleCardClick = async () => {
+    track({
+      event: "home card click",
+    });
+
     const convertedTitle = encodeURIComponent(
       property.title.replace(/ /g, "-")
     );
+
+    const req = await request({
+      type: "get",
+      endpoint: `admin/${property?.id}`,
+    });
+
+    if (req.data) {
+      router.push(`/${locale}/${property.sex}${convertedTitle}`);
+      return;
+    }
+
     router.push(`/${locale}/${convertedTitle}`);
   };
 

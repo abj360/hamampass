@@ -43,40 +43,28 @@ export interface TBooking {
   user: TUser;
   products: JSON;
   property: TProperty;
-  review: TReview;
+  review?: TReview;
   date: string;
   totalMoney: number;
 }
 
-export interface THour {
-  sex: number;
-  weekdays: string[];
-  weekends: string[];
-  segregated_details: {
-    mens: {
-      weekdays: string[];
-      weekends: string[];
-    };
-    womens: {
-      weekdays: string[];
-      weekends: string[];
-    };
-  };
+export interface TPartner {
+  id: string;
+  partnerId: string;
+  name: string;
+  commision: number;
+  bookings: TBooking[];
 }
 
 export interface TProperty {
   id: string;
   title: string;
+  sex?: number;
   isPublic: boolean;
   contactId: string;
   hourId: string;
   amenityId: string;
   photos: string[];
-  sex: number;
-  outsider_sex: {
-    sex: number;
-    day: string;
-  }[];
   pay: number;
   createdAt: string;
   updatedAt: string;
@@ -84,11 +72,20 @@ export interface TProperty {
   products: TProduct[];
   amenity: TAmenity;
   rating: TRating;
-  hour: THour;
   desc_tr: string;
   desc_en: string;
   adminId: string;
   [key: string]: any;
+  days: TDay[];
+}
+
+export interface TDay {
+  id: string;
+  propertyId: string;
+  dayIndex: number;
+  sex: number;
+  open: string;
+  close: string;
 }
 
 export interface TAmenity {

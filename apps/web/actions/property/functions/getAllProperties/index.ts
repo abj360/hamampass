@@ -21,6 +21,7 @@ async function getAllProperties(req: NextRequest) {
   const review = searchParams.get("review");
   const amenity = searchParams.get("amenity");
   const sex = searchParams.get("sex");
+  const day = searchParams.get("day");
   const range = searchParams.get("range");
   const space = searchParams.get("space");
 
@@ -34,6 +35,7 @@ async function getAllProperties(req: NextRequest) {
         "sort",
         "amenity",
         "sex",
+        "day",
         "range",
         "review",
         "space",
@@ -50,13 +52,14 @@ async function getAllProperties(req: NextRequest) {
         products: true,
         amenity: true,
         contact: true,
+        days: true,
       },
     })) as unknown as TProperty[];
 
     const filterAndSortAndPaginate = pipe(
       filterByKeys(filters),
       filterByAmenity(amenity),
-      filterBySex(sex),
+      filterBySex({ sex, day }),
       sortProperties(sort),
       sortReviews(review),
       filterByRange(range),

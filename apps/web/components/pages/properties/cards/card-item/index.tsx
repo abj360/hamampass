@@ -5,7 +5,7 @@ import { TProperty } from "@hamampass/db/types";
 import { photos } from "@/mock/photos";
 import { IoStar } from "react-icons/io5";
 import { Separator } from "@hamampass/ui/primitives/separator.tsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -16,9 +16,12 @@ import TitleCard from "./title";
 import { MdLocationOn } from "react-icons/md";
 import Amenities from "./lib/amenities";
 import { request } from "@hamampass/services";
+import useDay from "@/hooks/useDay";
+import useTrack from "@/hooks/useTrack";
 
 const CardItem = ({ property }: { property: TProperty }) => {
   const { locale } = useParams();
+  const track = useTrack();
 
   const product_type = useTranslations("home.product-type");
 
@@ -27,18 +30,24 @@ const CardItem = ({ property }: { property: TProperty }) => {
   const router = useRouter();
 
   const handleCardClick = async () => {
+    track({
+      event: "propeties card click",
+    });
+    const convertedTitle = encodeURIComponent(
+      property.title.replace(/ /g, "-")
+    );
+
     const req = await request({
       type: "get",
       endpoint: `admin/${property?.id}`,
     });
-    console.log(req.data);
 
-    const genderParam = req.data;
+    if (req.data) {
+      router.push(`/${locale}/${property.sex}${convertedTitle}`);
+      return;
+    }
 
-    const convertedTitle = encodeURIComponent(
-      property.title.replace(/ /g, "-")
-    );
-    router.push(`/${locale}/${genderParam ?? ""}${convertedTitle}`);
+    router.push(`/${locale}/${convertedTitle}`);
   };
 
   useEffect(() => {

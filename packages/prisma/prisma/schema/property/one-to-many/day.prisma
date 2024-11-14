@@ -1,0 +1,12 @@
+model Day {
+  id         String @id @default(uuid())
+  propertyId String
+  dayIndex   Int // 0 for Sunday, 1 for Monday, etc.
+  sex        Int // 0 for female, 1 for male, 2 for both
+  open       String // Store as a string in "HH:MM" format
+  close      String // Store as a string in "HH:MM" format
+
+  property Property @relation(fields: [propertyId], references: [id])
+
+  @@unique([propertyId, dayIndex]) // Ensure each day of the week has one entry per week
+}

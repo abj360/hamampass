@@ -1,16 +1,18 @@
-import { NextRequest } from "next/server";
 import prisma from "@hamampass/db";
 
-const getSegregated = async (propertyId: string) => {
+const isSegregated = async (propertyId: string) => {
   const property = await prisma.property.findUnique({
     where: {
       id: propertyId,
     },
+    include: {
+      days: true,
+    },
   });
 
-  if (!property?.adminId?.startsWith("s")) return null;
+  if (!property?.adminId?.startsWith("s")) return false;
 
-  return property.sex;
+  return true;
 };
 
-export default getSegregated;
+export default isSegregated;

@@ -2,7 +2,7 @@ import { NextRequest } from "next/server";
 import prisma from "@hamampass/db";
 
 const createProperty = async (req: NextRequest) => {
-  const { title, amenity, photos, hour, contact, sex, outsider_sex, products } =
+  const { title, amenity, photos, contact, products, day, sex } =
     await req.json();
 
   try {
@@ -14,14 +14,6 @@ const createProperty = async (req: NextRequest) => {
         location: contact.location,
         phone: contact.phone,
         map_link: contact.map_link,
-      },
-    });
-
-    const hourRecord = await prisma.hour.create({
-      data: {
-        weekdays: hour.weekdays,
-        weekends: hour.weekends,
-        segregated_details: hour.segregated_details,
       },
     });
 
@@ -44,15 +36,27 @@ const createProperty = async (req: NextRequest) => {
         title,
         amenityId: amenityRecord.id,
         photos,
-        sex,
-        outsider_sex,
         contactId: contactRecord.id,
-        hourId: hourRecord.id,
         products: {
           create: products,
         },
         adminId: admin.id,
+        sex,
       },
+    });
+
+    // create days record
+
+    [0, 1, 2, 3, 4, 5, 6].map(async (dayIndex) => {
+      await prisma.day.create({
+        data: {
+          propertyId: property.id,
+          dayIndex,
+          sex: day.sex,
+          open: day.open,
+          close: day.close,
+        },
+      });
     });
 
     return property;

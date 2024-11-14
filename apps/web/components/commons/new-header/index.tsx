@@ -9,20 +9,16 @@ import { IoChevronBack } from "react-icons/io5";
 
 interface HeaderProps {
   variant?: "default" | "sticky" | "white";
-  title?: string;
+  isHambuger?: boolean;
 }
 
-const Header = ({ variant = "default", title }: HeaderProps) => {
+const Header = ({ variant = "default", isHambuger = false }: HeaderProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
 
   const handleLogo = () => {
-    !title ? router.push(`/`) : window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const handleBack = () => {
-    router.back();
+    router.push(`/`);
   };
 
   useEffect(() => {
@@ -74,39 +70,37 @@ const Header = ({ variant = "default", title }: HeaderProps) => {
 
   return (
     <header
-      className={`flex justify-between items-center ${title && "border-b border-sgray-100 sticky top-0 z-30"} ${textColor} ${backgroundColor}   `}
+      className={`flex justify-between items-center ${textColor} ${backgroundColor} ${isHambuger && "mx-2"}`}
     >
-      {title && (
-        <IoChevronBack size={24} className="ml-2" onClick={handleBack} />
-      )}
-      <button onClick={handleLogo} className="z-40 w-full">
-        {title ? (
-          <p className="text-xl w-full">{title}</p>
-        ) : (
-          <Image src={logoSrc} width={200} height={200} alt="logo" />
-        )}
+      <button
+        onClick={handleLogo}
+        className={`w-full ${isHambuger ? " " : "flex items-center justify-center"}`}
+      >
+        <Image src={logoSrc} width={200} height={200} alt="logo" />
       </button>
 
-      <HamburgerDrawerComponent
-        setIsOpen={setIsOpen}
-        isOpen={isOpen}
-        cartItemCount={cartItemCount}
-        trigger={
-          <div className="relative">
-            <Hamburger
-              toggled={isOpen}
-              size={24}
-              aria-expanded={isOpen}
-              aria-controls="drawer-content"
-            />
-            {cartItemCount > 0 && (
-              <span className="absolute top-2 right-1 text-xs bg-secondary-700 text-center border text-white aspect-square rounded-full px-1">
-                {cartItemCount}
-              </span>
-            )}
-          </div>
-        }
-      />
+      {isHambuger && (
+        <HamburgerDrawerComponent
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          cartItemCount={cartItemCount}
+          trigger={
+            <div className="relative">
+              <Hamburger
+                toggled={isOpen}
+                size={24}
+                aria-expanded={isOpen}
+                aria-controls="drawer-content"
+              />
+              {cartItemCount > 0 && (
+                <span className="absolute top-2 right-1 text-xs bg-secondary-700 text-center border text-white aspect-square rounded-full px-1">
+                  {cartItemCount}
+                </span>
+              )}
+            </div>
+          }
+        />
+      )}
     </header>
   );
 };

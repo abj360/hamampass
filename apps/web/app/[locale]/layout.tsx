@@ -7,7 +7,7 @@ import { Toaster } from "@hamampass/ui/primitives/toaster.tsx";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import LocaleProvider from "@hamampass/i18n/lib/localeProvider";
-import Footer from "@/components/commons/footer";
+import Head from "next/head";
 
 const ReduxProvider = dynamic(() => import("@/lib/store/redux-provider"), {
   ssr: false,
@@ -33,12 +33,16 @@ export default async function Layout({
 }: LayoutProps) {
   return (
     <html lang={locale}>
-      <body className={`${inter.className} touch-pan-y  select-none h-svh`}>
+      <Head>
+        <meta name="theme-color" content="#ef4444" />
+      </Head>
+      <body
+        className={`${inter.className} touch-pan-y  select-none h-svh overscroll-y-contain`}
+      >
         <ReduxProvider>
           <LocaleProvider locale={locale}>
             <SessionProvider>
               {children} <Toaster />
-              <Footer />
               <SpeedInsights />
               <Analytics />
             </SessionProvider>

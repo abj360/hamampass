@@ -28,7 +28,7 @@ const DetailsComponent = forwardRef<HTMLDivElement, { data: TProperty }>(
             )}
           </div>
           <AmenityComponent data={data?.amenity} />
-          {data && <HoursComponent data={data?.hour} />}
+          {data && <HoursComponent property={data} />}
           {data && <LocationComponent contact={data?.contact} />}
         </div>
 

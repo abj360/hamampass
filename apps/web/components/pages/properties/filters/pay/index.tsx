@@ -53,10 +53,10 @@ const PaymentMethodComponent = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="pay">
-        <AccordionTrigger className="text-lg font-bold">
+        <AccordionTrigger className="font-semibold">
           {pay("pay_title")}
         </AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-2">
+        <AccordionContent className="flex flex-col gap-2 mt-3">
           <Label className="flex justify-between">
             <p>{payment_details("0")}</p>
             <Checkbox

@@ -9,7 +9,7 @@ import DetailsComponent from "./details";
 import { IoStar } from "react-icons/io5";
 import { GoDotFill } from "react-icons/go";
 import DrawerGeneral from "@/components/commons/drawer";
-import GoogleMapComponent from "@/components/pages/single-property/details/location/map";
+import { MapComponent } from "@hamampass/services";
 import Header from "@/components/commons/new-header";
 import Gender from "../properties/cards/card-item/lib/amenities/gender";
 import Price from "./lib/price";
@@ -42,7 +42,7 @@ const SinglePropertyPage = ({
 
   return (
     <div className="mb-6">
-      <Header variant="white" title={decode_title} />
+      <Header variant="white" isHambuger={true} />
       <Slider data={data} />
 
       {/* {data && <BookButton property={data} />} */}
@@ -61,11 +61,7 @@ const SinglePropertyPage = ({
                   <p className="text-xs">{view("view-map")} </p>
                 </div>
               }
-              content={
-                <div className="h-full">
-                  <GoogleMapComponent contact={data?.contact?.location} />
-                </div>
-              }
+              content={<MapComponent data={data.contact} />}
               handleOnly={true}
               fullWidth={true}
               title={title("location-title")}

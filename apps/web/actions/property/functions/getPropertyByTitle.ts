@@ -19,7 +19,6 @@ const getPropertyByTitle = async (req: NextRequest) => {
     where: whereClause,
     include: {
       contact: true,
-      hour: true,
       products: {
         include: {
           practicioners: true,
@@ -27,6 +26,7 @@ const getPropertyByTitle = async (req: NextRequest) => {
       },
       rating: true,
       amenity: true,
+      days: true,
     },
   });
 
